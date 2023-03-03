@@ -2,3 +2,6 @@ data/
 poetry.lock
 pyproject.toml
 .idea
+
+models/
+.ipynb_checkpoints/
