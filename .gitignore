@@ -2,5 +2,7 @@ tmp/data/
 .idea
 
 .ipynb_checkpoints/
-
+models/
+corpus/
+assets/
 *.csv

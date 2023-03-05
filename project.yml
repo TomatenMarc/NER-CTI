@@ -1,0 +1,72 @@
+title: 'End-To-End Named-Entity-Recognition for Cyber Threat Intelligence.'
+description: >
+  This has to be added.
+  Note: Don't forget to add the lookups section to the base_config.cfg
+
+assets:
+  - dest: 'assets/CyNER/train.txt'
+    url: 'https://raw.githubusercontent.com/aiforsec/CyNER/main/dataset/mitre/train.txt'
+  - dest: 'assets/CyNER/valid.txt'
+    url: 'https://raw.githubusercontent.com/aiforsec/CyNER/main/dataset/mitre/valid.txt'
+  - dest: 'assets/CyNER/test.txt'
+    url: 'https://raw.githubusercontent.com/aiforsec/CyNER/main/dataset/mitre/test.txt'
+
+directories: [ 'assets', 'corpus', 'configs', 'models' ]
+
+workflows:
+  all:
+    - info
+    - convert
+    - initialize
+    - debug-data
+    - train
+    - evaluate
+
+commands:
+  - name: info
+    help: 'Creates the README.md of this project.'
+    script:
+      - 'spacy project document --output README.md'
+    outputs:
+      - 'README.md'
+
+  - name: convert
+    help: 'Convert the CyNER data to .spacy format.'
+    script:
+      - 'mkdir -p corpus/CyNER/'
+      - 'spacy convert assets/CyNER/train.txt ./corpus/CyNER/ --file-type spacy --converter conll'
+      - 'spacy convert assets/CyNER/valid.txt ./corpus/CyNER/ --file-type spacy --converter conll'
+      - 'spacy convert assets/CyNER/test.txt ./corpus/CyNER/ --file-type spacy --converter conll'
+      - 'mv corpus/CyNER/valid.spacy corpus/CyNER/dev.spacy'
+    deps:
+      - 'assets/CyNER/train.txt'
+      - 'assets/CyNER/valid.txt'
+      - 'assets/CyNER/test.txt'
+    outputs:
+      - 'corpus/CyNER/train.spacy'
+      - 'corpus/CyNER/dev.spacy'
+      - 'corpus/CyNER/test.spacy'
+
+  - name: initialize
+    help: 'Initialize the configuration for training.'
+    script:
+      - 'spacy init fill-config ./configs/base_config.cfg ./configs/training_config.cfg'
+    deps:
+      - './configs/base_config.cfg'
+    outputs:
+      - './configs/training_config.cfg'
+
+  - name: debug-data
+    help: 'This method debugs `train` and `val` specified in `[path]` against the model as also declared in `training_config.cfg`.'
+    script:
+      - 'spacy debug data ./configs/training_config.cfg --verbose --paths.train ./corpus/CyNER/train.spacy --paths.dev ./corpus/CyNER/dev.spacy'
+
+  - name: train
+    help: 'This will run the training of the model as specified in `training_config.cfg`.'
+    script:
+      - 'spacy train ./configs/training_config.cfg --verbose --output ./models --paths.train ./corpus/CyNER/train.spacy --paths.dev ./corpus/CyNER/dev.spacy'
+
+  - name: evaluate
+    help: 'This will evaluate `models/model-best` with the held-out data for objectively testing the model performance.'
+    script:
+      - 'spacy evaluate models/model-best corpus/CyNER/test.spacy'
