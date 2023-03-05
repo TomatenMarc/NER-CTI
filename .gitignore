@@ -1,10 +1,6 @@
-data/
-poetry.lock
-pyproject.toml
+tmp/data/
 .idea
 
-models/
 .ipynb_checkpoints/
 
 *.csv
-*.json
