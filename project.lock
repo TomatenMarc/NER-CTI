@@ -46,7 +46,7 @@ info:
   deps: []
   outs:
     - path: README.md
-      md5: 547d12a23ebbff9413de4c4c76ad8970
+      md5: ad2bde4a39189f0788c83de12d764070
   spacy_version: 3.5.0
   spacy_git_version: dec81508d
 initialize:
@@ -55,10 +55,10 @@ initialize:
     - spacy init fill-config ./configs/base_config.cfg ./configs/training_config.cfg
   deps:
     - path: ./configs/base_config.cfg
-      md5: 599d521e96b2cd2e96b64d0438e61924
+      md5: fd9823a920c242cc452a7f06729ae268
   outs:
     - path: ./configs/training_config.cfg
-      md5: ef3fb4ef2e4d3a7014ea3e98def6253e
+      md5: 55f8551ce6511fbbffae5b4d8425c683
   spacy_version: 3.5.0
   spacy_git_version: dec81508d
 debug-data:
