@@ -294,7 +294,7 @@ commands:
   - name: train-classic-model
     help: 'This will run the training of the model as specified in `training_classic_model_config.cfg`.'
     script:
-      - 'spacy train ./configs/training_${vars.config_classic_model} --verbose --output ./models/classic --paths.train ./corpus/CyNER/train.spacy --paths.dev ./corpus/CyNER/dev.spacy'
+      - 'spacy train ./configs/training_${vars.config_classic_model} --gpu-id 0 --verbose --output ./models/classic --paths.train ./corpus/CyNER/train.spacy --paths.dev ./corpus/CyNER/dev.spacy'
     deps:
       - './configs/training_${vars.config_classic_model}'
       - './corpus/CyNER/train.spacy'
@@ -306,7 +306,7 @@ commands:
   - name: evaluate-classic-model
     help: 'This will evaluate `models/classic/model-best` with the held-out data for objectively testing the model performance.'
     script:
-      - 'spacy evaluate ./models/classic/model-best ./corpus/CyNER/test.spacy'
+      - 'spacy evaluate ./models/classic/model-best ./corpus/CyNER/test.spacy --gpu-id 0'
     deps:
       - './models/classic/model-best'
       - './corpus/CyNER/test.spacy'
@@ -338,7 +338,7 @@ commands:
   - name: evaluate-foundation-model
     help: 'This will evaluate `models/foundation/model-best` with the held-out data for objectively testing the model performance.'
     script:
-      - 'spacy evaluate ./models/foundation/model-best ./corpus/CyNER/test.spacy'
+      - 'spacy evaluate ./models/foundation/model-best ./corpus/CyNER/test.spacy --gpu-id 0'
     deps:
       - './models/foundation/model-best'
       - './corpus/CyNER/test.spacy'
