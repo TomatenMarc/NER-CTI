@@ -1,9 +1,5 @@
 title: 'End-To-End Named-Entity-Recognition for Cyber Threat Intelligence.'
 description: >
-  This has to be added.
-  
-  ## Approach
-  
   The approach of this report is twofold. In the first instance, the traditional approaches are contrasted.
   Therefore, the [CoreNLP pipeline](https://stanfordnlp.github.io/CoreNLP/ner.html#additional-tokensregexner-rules), which determines the entities in last
   instance on the basis [Conditional Random Field (CRF)](https://towardsdatascience.com/conditional-random-fields-explained-e5b8256da776), 
@@ -75,7 +71,7 @@ description: >
   CyNER is an open-source dataset for CTI and was introduced by [IBM T. J. Watson Research Center](https://arxiv.org/pdf/2204.05754.pdf).
   
     **Token Distribution:**
-    
+  
     | CyNER | Token | Unique   | Documents |
     |-------|--------|---------|-----------|
     | Train | 68.191 | 7.954   | 2.811     |
@@ -83,7 +79,7 @@ description: >
     | Test  | 19.270 | 3.602   | 748       |
   
     **Label Distribution:**
-    
+  
     | CyNER | Malware | Indicator   | System    | Organization   | Vulnerability    | 
     |-------|---------|-------------|-----------|----------------|------------------| 
     | Train | 705     | 1.252       | 838       | 288            | 48               | 
@@ -114,9 +110,101 @@ description: >
       O  B-Organization I-Organization O  O B-Indicator                O O
 
   This example shows significant differences in expression of a labels meaning. 
-  Here, files like "0b8806b38b52bebfe39ff585639e2ea2" or Backdoor.AndroidOS.Chuli.a" (Indicator) are detected by "Kaspersky Lab" (Organization). 
+  Here, files like "0b8806b38b52bebfe39ff585639e2ea2" or "Backdoor.AndroidOS.Chuli.a" (Indicator) are detected by "Kaspersky Lab" (Organization). 
   As this data do no cover relations between entities, the relation "detected by" is not of further interest.
+  
+  # Evaluation of different NER-techniques
+  
+  **Idea:** Compare the pipelines of CoreNLP and spaCy by focusing on their primary components. Hence, it might be interesting to see how they both work compared to each other. This means, both have several components leading to the final detection on named entities in texts. Another fascinating factor might be their implementation, usability in terms of programming effort and scalability.
 
+
+  **Possible Criteria:**
+
+
+      1) General structure of pipelines
+      2) Ease of use (Functionality)
+      3) Changeability of components
+      4) Domain adaptation
+      5) Performance (Runtime, Scalability)
+
+    | Tool                                                                                                                        | Basic Entities | BIO Format | Domain-Adaptation | Methods for Entity Recognition                        | Adding Pre-trained Models | End-to-End Readiness | Programming Language | Popularity on GitHub |
+    |-----------------------------------------------------------------------------------------------------------------------------|----------------|------------|-------------------|-------------------------------------------------------|----------------------------|----------------------|----------------------|----------------------|
+    | [spaCy](https://spacy.io/usage/linguistic-features#named-entities)                                                          | 18             | Yes        | Yes               | Ensemble, CNN, BILSTM, rule-based                     | Yes                        | Yes                  | Python               | 25,000+              |
+    | [flairNLP](https://github.com/flairNLP/flair/blob/master/resources/docs/TUTORIAL_2_TAGGING.md#named-entity-recognition-ner) | 13             | Yes        | Yes               | Ensemble, CRF, BILSTM, rule-based                     | Yes                        | Yes                  | Python               | 12,000+              |
+    | [NLTK](https://www.nltk.org/book/ch07.html#named-entity-recognition)                                                        | 5              | Yes        | Yes               | MaxEntropy, rule-based, regexp                        | No                         | No                   | Python               | 11,000+              |
+    | [CoreNLP](https://stanfordnlp.github.io/CoreNLP/ner.html)                                                                   | 4              | Yes        | Yes               | Ensemble, CRF, rule-based, perceptron, neural network | No                         | No                   | Java                 | 8,000+               |
+
+  **spaCy:** spaCy has excellent documentation that is well-organized, comprehensive, and easy to follow. The documentation includes detailed guides for installation, usage, and customization, as well as a complete API reference. Additionally, spaCy has a vibrant community of developers who contribute to the documentation and provide support through forums and chat channels.
+
+
+  **flairNLP:** flairNLP also has good documentation, although it is not as extensive as spaCy's. The documentation includes guides for installation, usage, and customization, as well as examples and API reference.
+
+
+  **NLTK:** NLTK has been around for a long time and has a very extensive documentation, with comprehensive guides and tutorials for various natural language processing tasks. However, the documentation can be overwhelming for new users, as it covers a lot of ground and may require some programming experience to fully understand.
+
+
+  **CoreNLP:** CoreNLP has documentation that is adequate for basic usage, but it can be difficult to navigate and lacks examples and detailed explanations for more advanced features like adding new entities. Additionally, the documentation is less actively maintained than some other libraries, which may make it harder to get support when needed.
+
+  # spaCy:
+
+  The spaCy library provides a powerful and flexible pipeline for state-of-the-art natural language processing. At its core is the nlp object, which represents the pipeline itself. The pipeline is a sequence of tracable components that are applied to each input text in turn, with each component performing a specific task such as tokenization, part-of-speech tagging, or named entity recognition.
+
+  The nlp object is created by loading a pre-trained model, such as en_core_web_sm, which contains a set of pre-defined pipeline components for standard cases of NER. These components can be modified or extended as needed using the nlp.add_pipe() method. Each pipeline component takes a Doc object as input and returns a modified Doc object with additional annotations.
+
+  The Doc object represents a processed document of text, and contains a sequence of Token objects that represent individual words or other elements of the text, such as punctuation or whitespace. Each Token object has a variety of properties and annotations, such as its lemma, part-of-speech tag, and named entity label.
+
+  The nlp object also provides a range of convenient methods and attributes for working with processed documents, such as accessing specific tokens or entities, visualizing the document structure, or performing similarity calculations between documents.
+
+  <img src="https://spacy.io/images/pipeline.svg">
+  
+  
+  <img src="https://spacy.io/images/tok2vec-listener.svg">
+  
+
+  
+  ## Basic Entities Labels
+
+  All spaCy pipelines provide a basic set of 18 entities to be interpreted as:
+
+      CARDINAL : Numerals that do not fall under another type
+      DATE : Absolute or relative dates or periods
+      EVENT : Named hurricanes, battles, wars, sports events, etc.
+      FAC : Buildings, airports, highways, bridges, etc.
+      GPE : Countries, cities, states
+      LANGUAGE : Any named language
+      LAW : Named documents made into laws.
+      LOC : Non-GPE locations, mountain ranges, bodies of water
+      MONEY : Monetary values, including unit
+      NORP : Nationalities or religious or political groups
+      ORDINAL : "first", "second", etc.
+      ORG : Companies, agencies, institutions, etc.
+      PERCENT : Percentage, including "%"
+      PERSON : People, including fictional
+      PRODUCT : Objects, vehicles, foods, etc. (not services)
+      QUANTITY : Measurements, as of weight or distance
+      TIME : Times smaller than a day
+      WORK_OF_ART : Titles of books, songs, etc.
+
+  These basic entity labels provide a solid ground for the most and common nlp setups.
+  However, certain use-cases like NER-CTI other downstream-tasks require specific entity-labels like those of STIX.
+  For these szenarios spaCy provides a detailed workflow.
+  
+  ## Workflow
+  
+  
+  <img src="https://spacy.io/images/projects.svg">
+  
+
+  ## Training
+  
+
+  <img src="https://spacy.io/images/training.svg">
+  
+  
+
+##############################################################################################################################################################
+# This section is about the setup of a spaCy project for NER-CTI.                                                                                            #
+##############################################################################################################################################################
 
 assets:
   - dest: 'assets/CyNER/train.txt'
@@ -131,16 +219,29 @@ assets:
 
 directories: [ 'assets', 'corpus', 'configs', 'models' ]
 
+vars:
+  config_classic_model: "classic_model_config.cfg"
+  config_foundation_model: "foundation_model_config.cfg"
+
 workflows:
-  all:
+  preparation:
     - info
-    - convert
-    - initialize
-    - debug-data
-    - train
-    - evaluate
+    - brace-yourself-data-is-coming
+    - initialize-configurations
+  classic-model:
+    - debug-data-classic-model
+    - train-classic-model
+    - evaluate-classic-model
+  foundation-model:
+    - debug-data-foundation-model
+    - train-foundation-model
+    - evaluate-foundation-model
 
 commands:
+  ##############################################################################################################################################################
+  # This section is about the commands for preparing the data for both the classic and the foundation model.                                                   #
+  ##############################################################################################################################################################
+
   - name: info
     help: 'Creates the README.md of this project.'
     script:
@@ -148,7 +249,7 @@ commands:
     outputs:
       - 'README.md'
 
-  - name: convert
+  - name: brace-yourself-data-is-coming
     help: 'Convert the CyNER data present in CoNLL format to .spacy format.'
     script:
       - 'mkdir -p corpus/CyNER/'
@@ -165,26 +266,79 @@ commands:
       - 'corpus/CyNER/dev.spacy'
       - 'corpus/CyNER/test.spacy'
 
-  - name: initialize
-    help: 'Initialize the configuration for training.'
+  - name: initialize-configurations
+    help: 'Initialize the training configurations for both models.'
     script:
-      - 'spacy init fill-config ./configs/base_config.cfg ./configs/training_config.cfg'
+      - 'spacy init fill-config ./configs/${vars.config_classic_model} ./configs/training_${vars.config_classic_model}'
+      - 'spacy init fill-config ./configs/${vars.config_foundation_model} ./configs/training_${vars.config_foundation_model}'
     deps:
-      - './configs/base_config.cfg'
+      - './configs/${vars.config_classic_model}'
+      - './configs/${vars.config_foundation_model}'
     outputs:
-      - './configs/training_config.cfg'
+      - './configs/training_${vars.config_classic_model}'
+      - './configs/training_${vars.config_foundation_model}'
 
-  - name: debug-data
-    help: 'This method adds `train.spacy` and `val.spacy` to `[paths]` section in `training_config.cfg` and evaluates the data against the model before training..'
-    script:
-      - 'spacy debug data ./configs/training_config.cfg --verbose --paths.train ./corpus/CyNER/train.spacy --paths.dev ./corpus/CyNER/dev.spacy'
+  ##############################################################################################################################################################
+  # This section is about the commands for training and evaluating the classical model.                                                                        #
+  ##############################################################################################################################################################
 
-  - name: train
-    help: 'This will run the training of the model as specified in `training_config.cfg`.'
+  - name: debug-data-classic-model
+    help: 'This method evaluates `train` and `dev` against the configuration of the classic model.'
     script:
-      - 'spacy train ./configs/training_config.cfg --verbose --output ./models --paths.train ./corpus/CyNER/train.spacy --paths.dev ./corpus/CyNER/dev.spacy'
+      - 'spacy debug data ./configs/training_${vars.config_classic_model} --verbose --paths.train ./corpus/CyNER/train.spacy --paths.dev ./corpus/CyNER/dev.spacy'
+    deps:
+      - './configs/training_${vars.config_classic_model}'
+      - './corpus/CyNER/train.spacy'
+      - './corpus/CyNER/dev.spacy'
 
-  - name: evaluate
-    help: 'This will evaluate `models/model-best` with the held-out data for objectively testing the model performance.'
+  - name: train-classic-model
+    help: 'This will run the training of the model as specified in `training_classic_model_config.cfg`.'
     script:
-      - 'spacy evaluate models/model-best corpus/CyNER/test.spacy'
+      - 'spacy train ./configs/training_${vars.config_classic_model} --verbose --output ./models/classic --paths.train ./corpus/CyNER/train.spacy --paths.dev ./corpus/CyNER/dev.spacy'
+    deps:
+      - './configs/training_${vars.config_classic_model}'
+      - './corpus/CyNER/train.spacy'
+      - './corpus/CyNER/dev.spacy'
+    outputs:
+      - './models/classic/model-best'
+      - './models/classic/model-last'
+
+  - name: evaluate-classic-model
+    help: 'This will evaluate `models/classic/model-best` with the held-out data for objectively testing the model performance.'
+    script:
+      - 'spacy evaluate ./models/classic/model-best ./corpus/CyNER/test.spacy'
+    deps:
+      - './models/classic/model-best'
+      - './corpus/CyNER/test.spacy'
+  ##############################################################################################################################################################
+  # This section is about the commands for training and evaluating the foundation model.                                                                        #
+  ##############################################################################################################################################################
+
+  - name: debug-data-foundation-model
+    help: 'This method evaluates `train` and `dev` against the configuration of the foundation model.'
+    script:
+      - 'spacy debug data ./configs/training_${vars.config_foundation_model} --verbose --paths.train ./corpus/CyNER/train.spacy --paths.dev ./corpus/CyNER/dev.spacy'
+    deps:
+      - './configs/training_${vars.config_foundation_model}'
+      - './corpus/CyNER/train.spacy'
+      - './corpus/CyNER/dev.spacy'
+
+  - name: train-foundation-model
+    help: 'This will run the training of the model as specified in `training_foundation_model_config.cfg`. Note: GPU with min. of 10GB memory required.'
+    script:
+      - 'spacy train ./configs/training_${vars.config_foundation_model} --gpu-id 0 --verbose --output ./models/foundation --paths.train ./corpus/CyNER/train.spacy --paths.dev ./corpus/CyNER/dev.spacy'
+    deps:
+      - './configs/training_${vars.config_foundation_model}'
+      - './corpus/CyNER/train.spacy'
+      - './corpus/CyNER/dev.spacy'
+    outputs:
+      - './models/foundation/model-best'
+      - './models/foundation/model-last'
+
+  - name: evaluate-foundation-model
+    help: 'This will evaluate `models/foundation/model-best` with the held-out data for objectively testing the model performance.'
+    script:
+      - 'spacy evaluate ./models/foundation/model-best ./corpus/CyNER/test.spacy'
+    deps:
+      - './models/foundation/model-best'
+      - './corpus/CyNER/test.spacy'
