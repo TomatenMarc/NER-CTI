@@ -21,7 +21,8 @@ Straightforward, this report focus on the cutting-edge technology spaCy and its 
 
 ## :mortar_board: Task definition of NER
 [Named Entity Recognition (NER)](https://deepai.org/machine-learning-glossary-and-terms/named-entity-recognition) is a fascinating field of  [Natural Language Processing (NLP)](https://www.ibm.com/topics/natural-language-processing) that involves the automatic identification and classification of  specific named entities such as people, places, organizations, and other objects of interest mentioned in text. This process involves sequence labeling at  the token level, where each word in a given text is analyzed for its context and syntax to determine whether it represents a named entity. NER can be performed using various techniques, including rule-based approaches, Conditional Random Fields (CRFs), and deep neural networks, each with its own advantages and limitations.
-<object data="<iframe src="" width="100%" height="500px"></iframe>" type="application/pdf" width="100%" height="500px"> </object>
+
+<embed src="https://github.com/TomatenMarc/NER-CTI/blob/introduce/spacy-project-structure/graphics/NER-Example.pdf" type="application/pdf" width="100%" height="600px" />
 
 State-of-the-art NER systems, however, rely on advanced machine learning algorithms, such as Convolutional Neural Networks (CNNs),  Recurrent Neural Networks (RNNs), and Transformer models like BERT and GPT, to achieve high accuracy and efficiency.  Speaking about the performance, NER is often evaluated using standard benchmarks such as [CoNLL](#conll) datasets, which uses the [BIO](#bio) format to  annotate named entities in text. Another related dataset for benchmarking NER systems is [OntoNotes](https://catalog.ldc.upenn.edu/LDC2013T19). 
 ### :green_apple: BIO
