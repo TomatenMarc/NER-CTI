@@ -3,12 +3,11 @@ description: >
   
   With the exponential growth of digital data, the need for efficient and effective processing of nearly unlimited information has become more pressing 
   than ever before.
-  In the realm of [Cyber Threat Intelligence (CTI)]( https://www.kaspersky.com/resource-center/definitions/threat-intelligence), one of the key challenges is 
+  In the realm of [Cyber Threat Intelligence (CTI)](https://www.kaspersky.com/resource-center/definitions/threat-intelligence), one of the key challenges is 
   identifying the interesting parts of large volumes of fluent text data.
-  Having stated this particular problem, [Named-Entity-Recognition (NER)](https://deepai.org/machine-learning-glossary-and-terms/named-entity-recognition) is a
-  crucial tool in this process, enabling analysts to automatically identify and name entities such as persons, dates, organizations, and locations appearing in 
-  unstructured text. However, CTI differs from standard NER in that it requires domain adaptation of the labels, which may differ from the standard 
-  labels for entities in the real word.
+  Having stated this particular problem, [Named-Entity-Recognition (NER)](#task-definition-of-ner) is a crucial tool in this process, enabling analysts to 
+  automatically identify and name entities such as persons, dates, organizations, and locations appearing in unstructured text. 
+  However, CTI differs from standard NER in that it requires domain adaptation of the labels, which may differ from the standard labels for entities in the real word.
 
 
   While traditional NER tools can be complex and time-consuming, [spaCy](https://spacy.io) provides an end-to-end solution that offers fast and efficient 
@@ -55,16 +54,18 @@ description: >
   
   ## Task definition of NER
   
-  NER stands for Named-Entity-Recognition, which is a subtask of Natural Language Processing (NLP) that involves identifying and categorizing named
-  entities in text into predefined categories such as person names, organization names, locations, and others.
+  [Named-Entity-Recognition (NER)](https://deepai.org/machine-learning-glossary-and-terms/named-entity-recognition) is a fascinating field of Natural Language Processing (NLP) that involves the automatic identification and classification of 
+  specific named entities such as people, places, organizations, and other objects of interest mentioned in text. This process involves sequence labeling at 
+  the token level, where each word in a given text is analyzed for its context and syntax to determine whether it represents a named entity.
+  NER can be performed using various techniques, including rule-based approaches, Conditional Random Fields (CRFs), and deep neural networks, each with its own
+  advantages and limitations. State-of-the-art NER systems rely on advanced machine learning algorithms, such as Convolutional Neural Networks (CNNs), 
+  Recurrent Neural Networks (RNNs), and Transformer models like BERT and GPT, to achieve high accuracy and efficiency. 
+  NER is often evaluated using standard benchmarks such as the CoNLL-2003 dataset, which uses the BIO (Beginning, Inside, Outside) format to annotate named entities in text.
+  There are also several applications of NER in various domains, including information retrieval, text summarization, machine translation, and question answering
+  systems, and its development and optimization are crucial for advancing the accuracy and efficiency of NLP algorithms. 
   
-  ## Task definition of NER-CTI
-  
-  NER-CTI stands for Named-Entity-Recognition for Cyber-Threat-Intelligence, which is a subtask of NER that involves identifying and categorizing named
-  entities related to Cyber-Threats in text into predefined categories such as IPs, URLs, protocols, locations or threat participants.
-  
-  ## BIO notation
-  
+  ### BIO
+
   The BIO notation is a commonly used labeling scheme in NER tasks. In this format, each token in a text is labeled with a prefix indicating whether it belongs 
   to a named entity and, if so, what type of entity it is. The prefix is either "B", "I", or "O", where:
 
@@ -80,7 +81,7 @@ description: >
   In this example, "John" is the beginning of a person (PER) entity, "New York" is the beginning of a location (LOC) entity, and "City" is 
   inside the same location entity.
 
-  ## CoNLL format
+  ### CoNLL
 
   The CoNLL format is a standard format for representing labeled sequences of tokens, often used for tasks like named entity recognition (NER) or part-of-speech
   (POS) tagging. The format is named after the [Conference on Natural Language Learning (CoNLL)](https://www.conll.org/previous-tasks), which first introduced 
@@ -91,7 +92,7 @@ description: >
   The first column contains the token itself, while subsequent columns contain labels for various linguistic features. 
   For example, in a typical NER task, the second column might contain the named entity label for each token, while in a POS tagging task, it might contain 
   the part-of-speech tag.
-  
+
       John  B-PER
       loves O
       in  O
@@ -99,7 +100,18 @@ description: >
       York  I-LOC
       City  I-LOC
   
-  ## About a universal annotation language for CTI data (STIX)
+  ## Task definition of NER-CTI
+  
+  Named Entity Recognition with Cyber Threat Intelligence (NER-CTI) is a specialized application of Named Entity Recognition (NER) in the field of cybersecurity.
+  NER-CTI involves the automatic identification and classification of specific named entities in cyber threat intelligence data, such as 
+  indicators of compromise, malware names, IP addresses, domain names, and other cyber threat-related entities, often represented using 
+  the [Structured Threat Information Expression (STIX)](https://oasis-open.github.io/cti-documentation/stix/intro) format.
+  The goal of NER-CTI is to extract actionable insights from large volumes of unstructured threat intelligence data to improve cybersecurity 
+  defenses and response. NER-CTI techniques typically involve the use of machine learning algorithms, including deep 
+  neural networks, to analyze and classify threat intelligence data. NER-CTI is an emerging area of research and has the potential to significantly enhance the
+  capabilities of cybersecurity analysts in detecting, mitigating, and responding to cyber threats.
+  
+  ### STIX
 
   As we do not deal with custom domain of named entity recognition, the the labels at hand differ from the standard entities like "GPE, ORG, LOC, PERCENT a.s.o.".
   The standard label-set for NER-CIT follows the definitions of [STIX](https://oasis-open.github.io/cti-documentation/stix/intro).
