@@ -202,10 +202,11 @@ brace-yourself-data-is-coming:
 evaluate-classic-model:
   cmd: python -m spacy run evaluate-classic-model
   script:
-    - spacy evaluate --gpu-id 0 ./models/classic/model-best ./corpus/CyNER/test.spacy
+    - spacy evaluate ./models/classic/model-best ./corpus/CyNER/test.spacy --gpu-id
+      0
   deps:
     - path: ./models/classic/model-best
-      md5: a5e5e40d82cc86f89cd7fa7ce1dea4bf
+      md5: 7818947c7609c26f5d59caf29cbb6b56
     - path: ./corpus/CyNER/test.spacy
       md5: bb4c720a5029850e80638a1ad4de0161
   outs: []
@@ -229,20 +230,22 @@ debug-data-foundation-model:
 evaluate-foundation-model:
   cmd: python -m spacy run evaluate-foundation-model
   script:
-    - spacy evaluate ./models/foundation/model-best ./corpus/CyNER/test.spacy
+    - spacy evaluate ./models/foundation/model-best ./corpus/CyNER/test.spacy --gpu-id
+      0
   deps:
     - path: ./models/foundation/model-best
-      md5: 05aff3d99ce4137278c8a4ee582ea86c
+      md5: 33d383fe1e74bd8a2f32f0fff2fa19a2
     - path: ./corpus/CyNER/test.spacy
       md5: bb4c720a5029850e80638a1ad4de0161
   outs: []
   spacy_version: 3.5.0
-  spacy_git_version: dec81508d
+  spacy_git_version: Unknown
 train-classic-model:
   cmd: python -m spacy run train-classic-model
   script:
-    - spacy train ./configs/training_classic_model_config.cfg --verbose --output ./models/classic
-      --paths.train ./corpus/CyNER/train.spacy --paths.dev ./corpus/CyNER/dev.spacy
+    - spacy train ./configs/training_classic_model_config.cfg --gpu-id 0 --verbose
+      --output ./models/classic --paths.train ./corpus/CyNER/train.spacy --paths.dev
+      ./corpus/CyNER/dev.spacy
   deps:
     - path: ./configs/training_classic_model_config.cfg
       md5: 55f8551ce6511fbbffae5b4d8425c683
@@ -252,8 +255,28 @@ train-classic-model:
       md5: b6c30c03bc15d6e87b4713e0326eb476
   outs:
     - path: ./models/classic/model-best
-      md5: 3dcfdb3ae1bde14b4b812efdb75c45ae
+      md5: 7818947c7609c26f5d59caf29cbb6b56
     - path: ./models/classic/model-last
-      md5: 898dd596247005192fe617528fd234f2
+      md5: 0f814cef8bccfde7fa9be06e0a2d95be
   spacy_version: 3.5.0
-  spacy_git_version: dec81508d
+  spacy_git_version: Unknown
+train-foundation-model:
+  cmd: python -m spacy run train-foundation-model
+  script:
+    - spacy train ./configs/training_foundation_model_config.cfg --gpu-id 0 --verbose
+      --output ./models/foundation --paths.train ./corpus/CyNER/train.spacy --paths.dev
+      ./corpus/CyNER/dev.spacy
+  deps:
+    - path: ./configs/training_foundation_model_config.cfg
+      md5: 5ceaf7884b24c7c3916df7cc80d6f528
+    - path: ./corpus/CyNER/train.spacy
+      md5: a0d154a36255c7d2ce2989fcb4b005f4
+    - path: ./corpus/CyNER/dev.spacy
+      md5: b6c30c03bc15d6e87b4713e0326eb476
+  outs:
+    - path: ./models/foundation/model-best
+      md5: 33d383fe1e74bd8a2f32f0fff2fa19a2
+    - path: ./models/foundation/model-last
+      md5: 26d4fe7ff627bcddb28abd2994430028
+  spacy_version: 3.5.0
+  spacy_git_version: Unknown
