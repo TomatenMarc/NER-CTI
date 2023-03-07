@@ -62,7 +62,9 @@ description: >
   NER can be performed using various techniques, including rule-based approaches, Conditional Random Fields (CRFs), and deep neural networks, each with its own
   advantages and limitations.
 
-  <iframe src="https://github.com/TomatenMarc/NER-CTI/blob/introduce/spacy-project-structure/graphics/NER-Example.pdf" width="100%" height="500px"></iframe>
+  <object data="<iframe src="" width="100%" height="500px"></iframe>" type="application/pdf" width="100%" height="500px">
+  </object>
+  
   
   State-of-the-art NER systems, however, rely on advanced machine learning algorithms, such as Convolutional Neural Networks (CNNs), 
   Recurrent Neural Networks (RNNs), and Transformer models like BERT and GPT, to achieve high accuracy and efficiency. 
