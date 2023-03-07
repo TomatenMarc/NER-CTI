@@ -1,12 +1,57 @@
-title: 'End-To-End Named-Entity-Recognition for Cyber Threat Intelligence.'
+title: 'A End-To-End pipline for Named Entity Recognition of Cyber Threat Intelligence.'
 description: >
-  The approach of this report is twofold. In the first instance, the traditional approaches are contrasted.
-  Therefore, the [CoreNLP pipeline](https://stanfordnlp.github.io/CoreNLP/ner.html#additional-tokensregexner-rules), which determines the entities in last
-  instance on the basis [Conditional Random Field (CRF)](https://towardsdatascience.com/conditional-random-fields-explained-e5b8256da776), 
-  and the [extended spaCy pipeline](https://spacy.io/usage/processing-pipelines) are compared with one another. 
-  Extended means that spaCy is ythe modern one of both libraries and makes it possible for example to replace individual components such as the feature 
-  extraction by means of different embedding techniques. Based on this, a [foundation model](https://research.ibm.com/blog/what-are-foundation-models), i.e. a 
-  more specialized [transformer pipeline](https://spacy.io/usage/v3#features-transformers-pipelines), is to be integrated into this process and evaluated.
+  
+  With the exponential growth of digital data, the need for efficient and effective processing of nearly unlimited information has become more pressing 
+  than ever before.
+  In the realm of [Cyber Threat Intelligence (CTI)]( https://www.kaspersky.com/resource-center/definitions/threat-intelligence), one of the key challenges is 
+  identifying the interesting parts of large volumes of fluent text data.
+  Having stated this particular problem, [Named-Entity-Recognition (NER)](https://deepai.org/machine-learning-glossary-and-terms/named-entity-recognition) is a
+  crucial tool in this process, enabling analysts to automatically identify and name entities such as persons, dates, organizations, and locations appearing in 
+  unstructured text. However, CTI differs from standard NER in that it requires domain adaptation of the labels, which may differ from the standard 
+  labels for entities in the real word.
+
+
+  While traditional NER tools can be complex and time-consuming, [spaCy](https://spacy.io) provides an end-to-end solution that offers fast and efficient 
+  NER and other NLP tasks.
+  One of the advantages of spaCy is its flexibility for domain adaptation, allowing users to [train their own models](https://spacy.io/usage/training) on custom
+  labels and text data. This is a critical advantage in CTI, where the ability to adapt to new and evolving threats is essential.
+
+
+  In comparison, academic projects like [CoreNLP](https://stanfordnlp.github.io/CoreNLP/) may be less flexible when it comes to domain adaptation, as they are 
+  often designed with a specific set of labels and data in mind. While these tools may be better suited for academic research and development, they may not be 
+  as effective in real-world CTI scenarios where rapid adaptation is key.
+
+  CTI data generally comes from the [Cyberspace](https://www.oxfordlearnersdictionaries.com/definition/american_english/cyberspace) which is protected by
+  organizations like the [Cyber Information Room (CIR)](https://www.bundeswehr.de/en/organization/the-cyber-and-information-domain-service).
+  In the mindset of this report, parts of CIR are responsible for collecting, analyzing, and disseminating information related to cyber threats.
+  
+  
+  These information can take the form of digital reports from a variety of sources, including domain experts, cyber security facilities, new reports, and other
+  digital sources. Processing these reports are essential in getting a global perspective of a situation, and this is where spaCy comes in.
+  With its pre-trained models for [23 languages](https://spacy.io/usage/models#languages) including also the ability to process multi-lingual data, 
+  analysts can easily start processing and analyzing reports without needing to invest time in building their own [NLP pipelines](https://spacy.io/api).
+  Moreover, spaCy's focus on [deep learning](https://spacy.io/api/architectures#transformers) and [neural networks](https://spacy.io/usage/v2#summary) puts it 
+  at the cutting edge of NLP research, offering the latest and most advanced techniques for NER and other NLP tasks.
+
+
+  One of the advantages of spaCy is its extensive [command line interface (CLI)](https://spacy.io/api/cli), which allows users to access a wide range of NLP 
+  tasks without needing to write code. This CLI makes it particularly attractive for industry situations, where ease of use and deploy-ability are key concerns.
+  In contrast, academic projects often require more customization and fine-tuning, which can make traditional NER tools more appropriate.
+  However, for analysts working in the fast-paced world of [military intelligence (MI)](https://www.collinsdictionary.com/dictionary/english/military-intelligence),
+  [spaCy's efficiency and ease of use](https://spacy.io/usage/facts-figures) make it an invaluable tool for processing and analyzing large volumes of CTI data.
+
+
+  Speaking generally about the domain of MI and CTI, the ability to quickly and accurately process large volumes of information is essential.
+  By leveraging the power of spaCy, analysts can [streamline their workflow](https://spacy.io/usage/projects) and focus on analysis rather than technicalities.
+  This report explores the exciting world of spaCy and how it is leading the charge in the fight against cyber attacks. 
+
+
+  With this horizon in mind, CIR is a critical part of MI operations, tasked with monitoring and responding to cyber threats. 
+  By collecting and analyzing data from a variety of sources, the CIR provides a comprehensive view of the cyber threat landscape and enables analysts to take 
+  proactive measures to defend against attacks.
+  
+  Straightforward, this report focus on the cutting-edge technology spaCy and its potential use for military intelligence and its benefits for monitoring by CIR.
+  
   
   ## Task definition of NER
   
