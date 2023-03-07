@@ -19,11 +19,11 @@ Speaking generally about the domain of MI and CTI, the ability to quickly and ac
 With this horizon in mind, CIR is a critical part of MI operations, tasked with monitoring and responding to cyber threats.  By collecting and analyzing data from a variety of sources, the CIR provides a comprehensive view of the cyber threat landscape and enables analysts to take  proactive measures to defend against attacks.
 Straightforward, this report focus on the cutting-edge technology spaCy and its potential use for military intelligence and its benefits for monitoring by CIR.
 
-## Task definition of NER
+## :mortar_board: Task definition of NER
 [Named Entity Recognition (NER)](https://deepai.org/machine-learning-glossary-and-terms/named-entity-recognition) is a fascinating field of  [Natural Language Processing (NLP)](https://www.ibm.com/topics/natural-language-processing) that involves the automatic identification and classification of  specific named entities such as people, places, organizations, and other objects of interest mentioned in text. This process involves sequence labeling at  the token level, where each word in a given text is analyzed for its context and syntax to determine whether it represents a named entity. NER can be performed using various techniques, including rule-based approaches, Conditional Random Fields (CRFs), and deep neural networks, each with its own advantages and limitations. 
 
 State-of-the-art NER systems, however, rely on advanced machine learning algorithms, such as Convolutional Neural Networks (CNNs),  Recurrent Neural Networks (RNNs), and Transformer models like BERT and GPT, to achieve high accuracy and efficiency.  Speaking about the performance, NER is often evaluated using standard benchmarks such as [CoNLL](#conll) datasets, which uses the [BIO](#bio) format to  annotate named entities in text. Another related dataset for benchmarking NER systems is [OntoNotes](https://catalog.ldc.upenn.edu/LDC2013T19). 
-### BIO
+### :green_apple: BIO
 The [BIO](https://medium.com/analytics-vidhya/bio-tagged-text-to-original-text-99b05da6664) notation is a commonly used labeling scheme in NER tasks.  In this format, each token in a text is labeled with a prefix indicating whether it belongs to a named entity and, if so, what type of entity it is. The prefix is either "B", "I", or "O", where:
 B (Beginning) indicates that the token is the beginning of a named entity. I (Inside) indicates that the token is inside a named entity. O (Outside) indicates that the token is not part of a named entity.
 This is an example of how BIO might look in a sentence:
@@ -32,7 +32,7 @@ This is an example of how BIO might look in a sentence:
     B-PER  O     O   B-LOC I-LOC I-LOC
 
 In this example, "John" is the beginning of a person (PER) entity, "New York" is the beginning of a location (LOC) entity, and "City" is  inside the same location entity.
-### CoNLL
+### :black_nib: CoNLL
 The CoNLL format is a standard format for representing labeled sequences of tokens, often used for tasks like NER.  The format is named after the [Conference on Natural Language Learning (CoNLL)](https://www.conll.org/previous-tasks), which was first introduced  it in 2000 and since then proposes challenges whose solutions in turn define the state-of-the-art for NLP.
 In the CoNLL format was introduced for the tasks of language-independent named entity recognition in [2002](https://www.clips.uantwerpen.be/conll2002/ner/)  and [2003](https://www.clips.uantwerpen.be/conll2003/ner/), and each line of a text file represents a single token and its associated label.  The first column contains the token itself, while subsequent columns contain labels for various linguistic features.  For example:
 
@@ -43,13 +43,13 @@ In the CoNLL format was introduced for the tasks of language-independent named e
     York  I-LOC
     City  I-LOC
 
-## Task definition of NER-CTI
+## :school_satchel: Task definition of NER-CTI
 Named Entity Recognition with [Cyber Threat Intelligence (NER-CTI)](https://www.kaspersky.com/resource-center/definitions/threat-intelligence) is a  specialized application of Named Entity Recognition (NER) in the field of cybersecurity. NER-CTI involves the automatic identification and classification of specific named entities in cyber threat intelligence data, such as  indicators of compromise, malware names, IP addresses, domain names, and other cyber threat-related entities, often represented using  the [Structured Threat Information Expression (STIX)](#stix) format. The goal of NER-CTI is to extract actionable insights from large volumes of unstructured threat intelligence data to improve cybersecurity  defenses and response. NER-CTI techniques typically involve the use of machine learning algorithms, including deep  neural networks, to analyze and classify threat intelligence data. NER-CTI is an emerging area of research and has the potential to significantly enhance the capabilities of cybersecurity analysts in detecting, mitigating, and responding to cyber threats.
-### STIX
+### :paperclip: STIX
 As we do not deal with custom domain of named entity recognition, the the labels at hand differ from the standard entities like "GPE, ORG, LOC, PERCENT a.s.o.". The standard label-set for NER-CIT follows the definitions of [STIX](https://oasis-open.github.io/cti-documentation/stix/intro).
 Having a closer look at STIX might also be interesting to find other CTI-datasets also including relationships. Additionally, STIX adds an interesting turn in working with CTI-data by introducing not only "Entities" and "Relations" but also "Sightings" defined as:  "belief that something in CTI (e.g., an indicator, malware, tool, threat actor, etc.) was seen".  This is especially fascinating, because a relation like "Kaspersky Lab detected Trojan.Win32.Agent" can be seen as the facts of having a CTI already broke the system. In contrast, a "sighting" is information streamed in real-time data not proven to be true or false, thus making the task of detecting cyberattacks  especially difficult.
-## CyNER
-CyNER is an open-source dataset for CTI and was introduced by [IBM T. J. Watson Research Center](https://arxiv.org/pdf/2204.05754.pdf).
+## :floppy_disk: CyNER
+CyNER is an open-source dataset for CTI and was introduced by [IBM T. J. Watson Research Center](https://arxiv.org/pdf/2204.05754.pdf). The CyNER dataset is a new dataset for NER-CTI, which consists of 4,372 cybersecurity-related sentences manually annotated with 6 types of entities, such as "Malware," "Vulnerability," and "Indicator." The dataset was created to address the lack of cybersecurity-specific NER datasets and to facilitate the development of more accurate and effective NER models for cybersecurity applications. In addition, the paper provides detailed statistics about the dataset, an analysis of its characteristics, and a baseline performance of 76.66% macro-F1  achieved with XML-RoBERTa-large.
 
   **Token Distribution:**
 
@@ -65,7 +65,15 @@ CyNER is an open-source dataset for CTI and was introduced by [IBM T. J. Watson 
   |-------|---------|-------------|-----------|----------------|------------------| 
   | Train | 705     | 1.252       | 838       | 288            | 48               | 
   | Dev   | 254     |   247       | 182       |  92            |  9               | 
-  | Test  | 242     |   301       | 249       | 134            | 10               | 
+  | Test  | 242     |   301       | 249       | 134            | 10               |
+
+  **Performance XLM-RoBERTa-large on test set:**
+
+  | CyNER | Malware | Indicator   | System    | Organization   | Vulnerability    | 
+  |-------|---------|-------------|-----------|----------------|------------------| 
+  | Prec. | 79.82   | 78.34       | 70.36     | 70.64          | 100.0            | 
+  | Rec.  | 75.11   | 86.62       | 79.93     | 60.16          | 80.00            | 
+  | F1    | 77.39   | 82.27       | 74.84     | 64.98          | 88.89            | 
 
 **Data-Format:** *CoNLL*
 
@@ -87,43 +95,33 @@ CyNER is an open-source dataset for CTI and was introduced by [IBM T. J. Watson 
     O  B-Organization I-Organization O  O B-Indicator                O O
 
 This example shows significant differences in expression of a labels meaning.  Here, files like "0b8806b38b52bebfe39ff585639e2ea2" or "Backdoor.AndroidOS.Chuli.a" (Indicator) are detected by "Kaspersky Lab" (Organization).  As this data do no cover relations between entities, the relation "detected by" is not of further interest.
+# :bookmark_tabs: spaCy's text processing pipeline:
+The SpaCy pipeline is a sequence of NLP components that are applied to a text document in order to extract meaning and structure from the text, including a  [tokenizer](https://spacy.io/api/tokenizer), a [part-of-speech tagger (POS)](https://spacy.io/api/tagger), a [dependency parser](https://spacy.io/api/dependencyparser), [NER](https://spacy.io/api/entityrecognizer), and all follow-up tasks like [text categorization](https://spacy.io/api/textcategorizer).
+<figure>
+  <img src="https://spacy.io/images/pipeline.svg" alt="Spacy pipeline diagram">
+  <figcaption>A diagram of the Spacy pipeline <em>(Source: https://spacy.io/images/pipeline.svg)</em></figcaption>
+</figure>
 
+At its core is the [nlp](https://spacy.io/usage/processing-pipelines) object, which represents the pipeline itself.
+The pipeline starts by tokenizing the text, or breaking it up into individual words or sub-word units. Then, the POS tagger assigns a part-of-speech tag to  each token, such as "noun", "verb", "adjective", etc. Next, the dependency parser analyzes the relationships between the tokens in the sentence, identifying  the grammatical structure and dependencies between words. Consequently, the NER component then identifies and extracts named entities, such as people, organizations, and locations, from the text.  This capability in turn can be used to extract structured data from unstructured text, such as building a knowledge graph or generating a database.
 
-# >>>>>>>>>>>: Evaluation of different NER-techniques <<<<<<<<<<<<<<
-**Idea:** Compare the pipelines of CoreNLP and spaCy by focusing on their primary components. Hence, it might be interesting to see how they both work compared to each other. This means, both have several components leading to the final detection on named entities in texts. Another fascinating factor might be their implementation, usability in terms of programming effort and scalability.
+Also it's worth noting that the components of the SpaCy pipeline is designed to be flexible and modular, so developers can choose to use all or some of them, or  even add [custom components](https://spacy.io/usage/training#custom-functions) as needed.
 
-**Possible Criteria:**
+Overall, a pipeline returns a so-called [Doc](https://spacy.io/api/doc#_title) object representing a processed document of text, that contains a sequence of  [Token](https://spacy.io/api/token) objects represent individual words or other elements of the text, such as punctuation or whitespace.  Each Token object has a variety of properties and annotations, such as its lemma, part-of-speech tag, and named entity labels. The nlp object also provides a range of convenient methods and attributes for working with processed documents, such as accessing specific tokens or entities, visualizing the document structure, or performing similarity calculations between documents.
+## :telescope: Turning text into features
+spacy's pipeline components, such as the part-of-speech tagger, dependency parser, and named entity recognizer, can listen to the text representation  components tok2vec or transformers to extract useful features for their respective tasks. These features are learned through pre-training on large corpora of  text, and can capture important semantic and syntactic relationships between words. By using pre-trained vectors, the text representation component can improve the accuracy and robustness of these downstream components, as they can better capture the nuances of natural language.
+<figure>
+  <img src="https://spacy.io/images/tok2vec-listener.svg" alt="Spacy listener diagram">
+  <figcaption>A diagram of how spacy's components listen to text features. <em>(Source: https://spacy.io/images/tok2vec-listener.svg)
+</em></figcaption> </figure>
 
+The [tok2vec](https://spacy.io/api/tok2vec#_title) component in spacy's pipeline uses a [convolutional neural network (CNN)](https://spacy.io/models#design-cnn) architecture to generate word embeddings that capture local context information. These embeddings are pre-trained on a large corpus of text using a  self-supervised learning approach. Specifically, the CNN is trained to predict the word that appears in the center of a fixed-size window of surrounding words. By doing so, the model learns to capture important local context information that is useful for downstream tasks such as part-of-speech tagging and named  entity recognition.
 
-    1) General structure of pipelines
-    2) Ease of use (Functionality)
-    3) Changeability of components
-    4) Domain adaptation
-    5) Performance (Runtime, Scalability)
+The [transformers](https://spacy.io/usage/embeddings-transformers) component, on the other hand, uses a  [self-attention mechanism](https://machinelearningmastery.com/the-transformer-attention-mechanism/) to generate contextualized word embeddings that  capture both local and global context information. The model is pre-trained on large corpora of text using a [self-supervised learning](https://ai.facebook.com/blog/self-supervised-learning-the-dark-matter-of-intelligence/) approach known as masked language modeling. Specifically, the model is trained to predict the masked words in a sentence by attending to the surrounding words in the context.  This approach allows the model to learn rich contextual representations that capture complex relationships between words and are useful for a wide range of natural language processing tasks.
 
-  | Tool                                                                                                                        | Basic Entities | BIO Format | Domain-Adaptation | Methods for Entity Recognition                        | Adding Pre-trained Models | End-to-End Readiness | Programming Language | Popularity on GitHub |
-  |-----------------------------------------------------------------------------------------------------------------------------|----------------|------------|-------------------|-------------------------------------------------------|----------------------------|----------------------|----------------------|----------------------|
-  | [spaCy](https://spacy.io/usage/linguistic-features#named-entities)                                                          | 18             | Yes        | Yes               | Ensemble, CNN, BILSTM, rule-based                     | Yes                        | Yes                  | Python               | 25,000+              |
-  | [flairNLP](https://github.com/flairNLP/flair/blob/master/resources/docs/TUTORIAL_2_TAGGING.md#named-entity-recognition-ner) | 13             | Yes        | Yes               | Ensemble, CRF, BILSTM, rule-based                     | Yes                        | Yes                  | Python               | 12,000+              |
-  | [NLTK](https://www.nltk.org/book/ch07.html#named-entity-recognition)                                                        | 5              | Yes        | Yes               | MaxEntropy, rule-based, regexp                        | No                         | No                   | Python               | 11,000+              |
-  | [CoreNLP](https://stanfordnlp.github.io/CoreNLP/ner.html)                                                                   | 4              | Yes        | Yes               | Ensemble, CRF, rule-based, perceptron, neural network | No                         | No                   | Java                 | 8,000+               |
+When encountering out-of-distribution words, tok2vec and transformers handle them in different ways. For tok2vec, these words are treated as unknown and  assigned a zero vector. However, this can sometimes lead to poor performance on tasks that require handling of rare or unseen words. To address this, spacy  provides options to fine-tune the tok2vec component on domain-specific data to better handle out-of-distribution words. Transformers, on the other hand, use a contextualized approach that allows the model to generate a representation for any word in the context of  the surrounding text. This means that even if a word is out of distribution, the transformer can still  [generate a meaningful representation](https://ai.googleblog.com/2021/12/a-fast-wordpiece-tokenization-system.html) based on the context in which the word appears.
 
-**spaCy:** spaCy has excellent documentation that is well-organized, comprehensive, and easy to follow. The documentation includes detailed guides for installation, usage, and customization, as well as a complete API reference. Additionally, spaCy has a vibrant community of developers who contribute to the documentation and provide support through forums and chat channels.
-
-**flairNLP:** flairNLP also has good documentation, although it is not as extensive as spaCy's. The documentation includes guides for installation, usage, and customization, as well as examples and API reference.
-
-**NLTK:** NLTK has been around for a long time and has a very extensive documentation, with comprehensive guides and tutorials for various natural language processing tasks. However, the documentation can be overwhelming for new users, as it covers a lot of ground and may require some programming experience to fully understand.
-
-**CoreNLP:** CoreNLP has documentation that is adequate for basic usage, but it can be difficult to navigate and lacks examples and detailed explanations for more advanced features like adding new entities. Additionally, the documentation is less actively maintained than some other libraries, which may make it harder to get support when needed.
-# spaCy:
-The spaCy library provides a powerful and flexible pipeline for state-of-the-art natural language processing. At its core is the nlp object, which represents the pipeline itself. The pipeline is a sequence of tracable components that are applied to each input text in turn, with each component performing a specific task such as tokenization, part-of-speech tagging, or named entity recognition.
-The nlp object is created by loading a pre-trained model, such as en_core_web_sm, which contains a set of pre-defined pipeline components for standard cases of NER. These components can be modified or extended as needed using the nlp.add_pipe() method. Each pipeline component takes a Doc object as input and returns a modified Doc object with additional annotations.
-The Doc object represents a processed document of text, and contains a sequence of Token objects that represent individual words or other elements of the text, such as punctuation or whitespace. Each Token object has a variety of properties and annotations, such as its lemma, part-of-speech tag, and named entity label.
-The nlp object also provides a range of convenient methods and attributes for working with processed documents, such as accessing specific tokens or entities, visualizing the document structure, or performing similarity calculations between documents.
-<img src="https://spacy.io/images/pipeline.svg">
-
-<img src="https://spacy.io/images/tok2vec-listener.svg">
-
+--------------
 
 ## Basic Entities Labels
 All spaCy pipelines provide a basic set of 18 entities to be interpreted as:
