@@ -3,7 +3,7 @@
 # 🪐 spaCy Project: A End-To-End pipline for Named Entity Recognition of Cyber Threat Intelligence.
 
 
-With the exponential growth of digital data, the need for efficient and effective processing of nearly unlimited information has become more pressing  than ever before. In the realm of [Cyber Threat Intelligence (CTI)](https://www.kaspersky.com/resource-center/definitions/threat-intelligence), one of the key challenges is  identifying the interesting parts of large volumes of fluent text data. Having stated this particular problem, [Named-Entity-Recognition (NER)](#task-definition-of-ner) is a crucial tool in this process, enabling analysts to  automatically identify and name entities such as persons, dates, organizations, and locations appearing in unstructured text.  However, CTI differs from standard NER in that it requires domain adaptation of the labels, which may differ from the standard labels for entities in the real word.
+With the exponential growth of digital data, the need for efficient and effective processing of nearly unlimited information has become more pressing  than ever before. In the realm of [Cyber Threat Intelligence (CTI)](https://www.kaspersky.com/resource-center/definitions/threat-intelligence), one of the key challenges is  identifying the interesting parts of large volumes of fluent text data. Having stated this particular problem, [Named Entity Recognition (NER)](#task-definition-of-ner) is a crucial tool in this process, enabling analysts to  automatically identify and name entities such as persons, dates, organizations, and locations appearing in unstructured text.  However, [Named Entity Recognition of Cyber Threat Intelligence (NER-CTI)](#task-definition-of-ner-cti) differs from standard NER as it requires  domain adaptation of the labels, which may differ from the standard labels for entities in the real word.
 
 While traditional NER tools can be complex and time-consuming, [spaCy](https://spacy.io) provides an end-to-end solution that offers fast and efficient  NER and other NLP tasks. One of the advantages of spaCy is its flexibility for domain adaptation, allowing users to [train their own models](https://spacy.io/usage/training) on custom labels and text data. This is a critical advantage in CTI, where the ability to adapt to new and evolving threats is essential.
 
@@ -20,9 +20,11 @@ With this horizon in mind, CIR is a critical part of MI operations, tasked with 
 Straightforward, this report focus on the cutting-edge technology spaCy and its potential use for military intelligence and its benefits for monitoring by CIR.
 
 ## Task definition of NER
-[Named-Entity-Recognition (NER)](https://deepai.org/machine-learning-glossary-and-terms/named-entity-recognition) is a fascinating field of Natural Language Processing (NLP) that involves the automatic identification and classification of  specific named entities such as people, places, organizations, and other objects of interest mentioned in text. This process involves sequence labeling at  the token level, where each word in a given text is analyzed for its context and syntax to determine whether it represents a named entity. NER can be performed using various techniques, including rule-based approaches, Conditional Random Fields (CRFs), and deep neural networks, each with its own advantages and limitations. State-of-the-art NER systems rely on advanced machine learning algorithms, such as Convolutional Neural Networks (CNNs),  Recurrent Neural Networks (RNNs), and Transformer models like BERT and GPT, to achieve high accuracy and efficiency.  NER is often evaluated using standard benchmarks such as the CoNLL-2003 dataset, which uses the BIO (Beginning, Inside, Outside) format to annotate named entities in text. There are also several applications of NER in various domains, including information retrieval, text summarization, machine translation, and question answering systems, and its development and optimization are crucial for advancing the accuracy and efficiency of NLP algorithms. 
+[Named Entity Recognition (NER)](https://deepai.org/machine-learning-glossary-and-terms/named-entity-recognition) is a fascinating field of  [Natural Language Processing (NLP)](https://www.ibm.com/topics/natural-language-processing) that involves the automatic identification and classification of  specific named entities such as people, places, organizations, and other objects of interest mentioned in text. This process involves sequence labeling at  the token level, where each word in a given text is analyzed for its context and syntax to determine whether it represents a named entity. NER can be performed using various techniques, including rule-based approaches, Conditional Random Fields (CRFs), and deep neural networks, each with its own advantages and limitations. 
+
+State-of-the-art NER systems, however, rely on advanced machine learning algorithms, such as Convolutional Neural Networks (CNNs),  Recurrent Neural Networks (RNNs), and Transformer models like BERT and GPT, to achieve high accuracy and efficiency.  Speaking about the performance, NER is often evaluated using standard benchmarks such as [CoNLL](#conll) datasets, which uses the [BIO](#bio) format to  annotate named entities in text. Another related dataset for benchmarking NER systems is [OntoNotes](https://catalog.ldc.upenn.edu/LDC2013T19). 
 ### BIO
-The BIO notation is a commonly used labeling scheme in NER tasks. In this format, each token in a text is labeled with a prefix indicating whether it belongs  to a named entity and, if so, what type of entity it is. The prefix is either "B", "I", or "O", where:
+The [BIO](https://medium.com/analytics-vidhya/bio-tagged-text-to-original-text-99b05da6664) notation is a commonly used labeling scheme in NER tasks.  In this format, each token in a text is labeled with a prefix indicating whether it belongs to a named entity and, if so, what type of entity it is. The prefix is either "B", "I", or "O", where:
 B (Beginning) indicates that the token is the beginning of a named entity. I (Inside) indicates that the token is inside a named entity. O (Outside) indicates that the token is not part of a named entity.
 This is an example of how BIO might look in a sentence:
 
@@ -31,18 +33,18 @@ This is an example of how BIO might look in a sentence:
 
 In this example, "John" is the beginning of a person (PER) entity, "New York" is the beginning of a location (LOC) entity, and "City" is  inside the same location entity.
 ### CoNLL
-The CoNLL format is a standard format for representing labeled sequences of tokens, often used for tasks like named entity recognition (NER) or part-of-speech (POS) tagging. The format is named after the [Conference on Natural Language Learning (CoNLL)](https://www.conll.org/previous-tasks), which first introduced  it in 2000.
-In the CoNLL format was introduced for the tasks of language-independent named entity recognition in [2002](https://www.clips.uantwerpen.be/conll2002/ner/)  and [2003](https://www.clips.uantwerpen.be/conll2003/ner/), each line of a text file represents a single token and its associated labels.  The first column contains the token itself, while subsequent columns contain labels for various linguistic features.  For example, in a typical NER task, the second column might contain the named entity label for each token, while in a POS tagging task, it might contain  the part-of-speech tag.
+The CoNLL format is a standard format for representing labeled sequences of tokens, often used for tasks like NER.  The format is named after the [Conference on Natural Language Learning (CoNLL)](https://www.conll.org/previous-tasks), which was first introduced  it in 2000 and since then proposes challenges whose solutions in turn define the state-of-the-art for NLP.
+In the CoNLL format was introduced for the tasks of language-independent named entity recognition in [2002](https://www.clips.uantwerpen.be/conll2002/ner/)  and [2003](https://www.clips.uantwerpen.be/conll2003/ner/), and each line of a text file represents a single token and its associated label.  The first column contains the token itself, while subsequent columns contain labels for various linguistic features.  For example:
 
     John  B-PER
-    loves O
+    lives O
     in  O
     New B-LOC
     York  I-LOC
     City  I-LOC
 
 ## Task definition of NER-CTI
-Named Entity Recognition with Cyber Threat Intelligence (NER-CTI) is a specialized application of Named Entity Recognition (NER) in the field of cybersecurity. NER-CTI involves the automatic identification and classification of specific named entities in cyber threat intelligence data, such as  indicators of compromise, malware names, IP addresses, domain names, and other cyber threat-related entities, often represented using  the [Structured Threat Information Expression (STIX)](https://oasis-open.github.io/cti-documentation/stix/intro) format. The goal of NER-CTI is to extract actionable insights from large volumes of unstructured threat intelligence data to improve cybersecurity  defenses and response. NER-CTI techniques typically involve the use of machine learning algorithms, including deep  neural networks, to analyze and classify threat intelligence data. NER-CTI is an emerging area of research and has the potential to significantly enhance the capabilities of cybersecurity analysts in detecting, mitigating, and responding to cyber threats.
+Named Entity Recognition with [Cyber Threat Intelligence (NER-CTI)](https://www.kaspersky.com/resource-center/definitions/threat-intelligence) is a  specialized application of Named Entity Recognition (NER) in the field of cybersecurity. NER-CTI involves the automatic identification and classification of specific named entities in cyber threat intelligence data, such as  indicators of compromise, malware names, IP addresses, domain names, and other cyber threat-related entities, often represented using  the [Structured Threat Information Expression (STIX)](#stix) format. The goal of NER-CTI is to extract actionable insights from large volumes of unstructured threat intelligence data to improve cybersecurity  defenses and response. NER-CTI techniques typically involve the use of machine learning algorithms, including deep  neural networks, to analyze and classify threat intelligence data. NER-CTI is an emerging area of research and has the potential to significantly enhance the capabilities of cybersecurity analysts in detecting, mitigating, and responding to cyber threats.
 ### STIX
 As we do not deal with custom domain of named entity recognition, the the labels at hand differ from the standard entities like "GPE, ORG, LOC, PERCENT a.s.o.". The standard label-set for NER-CIT follows the definitions of [STIX](https://oasis-open.github.io/cti-documentation/stix/intro).
 Having a closer look at STIX might also be interesting to find other CTI-datasets also including relationships. Additionally, STIX adds an interesting turn in working with CTI-data by introducing not only "Entities" and "Relations" but also "Sightings" defined as:  "belief that something in CTI (e.g., an indicator, malware, tool, threat actor, etc.) was seen".  This is especially fascinating, because a relation like "Kaspersky Lab detected Trojan.Win32.Agent" can be seen as the facts of having a CTI already broke the system. In contrast, a "sighting" is information streamed in real-time data not proven to be true or false, thus making the task of detecting cyberattacks  especially difficult.
@@ -69,7 +71,7 @@ CyNER is an open-source dataset for CTI and was introduced by [IBM T. J. Watson 
 
 **Entity-Notation:** *(B I O)*
 
-**Entity-Labels:** *'Organization', 'System', 'Malware', 'Indicator', 'O', 'Vulnerability'*
+**Entity-Labels (STIX):** *'Organization', 'System', 'Malware', 'Indicator', 'O', 'Vulnerability'*
 
 **Repository:** https://github.com/aiforsec/CyNER
 
@@ -85,7 +87,9 @@ CyNER is an open-source dataset for CTI and was introduced by [IBM T. J. Watson 
     O  B-Organization I-Organization O  O B-Indicator                O O
 
 This example shows significant differences in expression of a labels meaning.  Here, files like "0b8806b38b52bebfe39ff585639e2ea2" or "Backdoor.AndroidOS.Chuli.a" (Indicator) are detected by "Kaspersky Lab" (Organization).  As this data do no cover relations between entities, the relation "detected by" is not of further interest.
-# Evaluation of different NER-techniques
+
+
+# >>>>>>>>>>>: Evaluation of different NER-techniques <<<<<<<<<<<<<<
 **Idea:** Compare the pipelines of CoreNLP and spaCy by focusing on their primary components. Hence, it might be interesting to see how they both work compared to each other. This means, both have several components leading to the final detection on named entities in texts. Another fascinating factor might be their implementation, usability in terms of programming effort and scalability.
 
 **Possible Criteria:**
