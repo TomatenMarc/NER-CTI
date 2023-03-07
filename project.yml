@@ -299,6 +299,82 @@ description: >
   <img src="https://spacy.io/images/training.svg">
 
 
+  ## Hardware
+
+      Environment: Google-Colab  
+      GPU 0: Tesla T4 (UUID: GPU-616858e9-5652-63ea-cf1a-e7df8574dc8e)
+      Used: ~13.3 of 16 GB GPU for training over 1h and 40 minutes.
+      
+      +-----------------------------------------------------------------------------+
+      | NVIDIA-SMI 525.85.12    Driver Version: 525.85.12    CUDA Version: 12.0     |
+      |-------------------------------+----------------------+----------------------+
+      | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+      | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+      |                               |                      |               MIG M. |
+      |===============================+======================+======================|
+      |   0  Tesla T4            Off  | 00000000:00:04.0 Off |                    0 |
+      | N/A   44C    P0    24W /  70W |      0MiB / 15360MiB |      0%      Default |
+      |                               |                      |                  N/A |
+      +-------------------------------+----------------------+----------------------+
+
+      +-----------------------------------------------------------------------------+
+      | Processes:                                                                  |
+      |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+      |        ID   ID                                                   Usage      |
+      |=============================================================================|
+      |  No running processes found                                                 |
+      +-----------------------------------------------------------------------------+
+
+      Architecture:                    x86_64
+      CPU op-mode(s):                  32-bit, 64-bit
+      Byte Order:                      Little Endian
+      Address sizes:                   46 bits physical, 48 bits virtual
+      CPU(s):                          2
+      On-line CPU(s) list:             0,1
+      Thread(s) per core:              2
+      Core(s) per socket:              1
+      Socket(s):                       1
+      NUMA node(s):                    1
+      Vendor ID:                       GenuineIntel
+      CPU family:                      6
+      Model:                           85
+      Model name:                      Intel(R) Xeon(R) CPU @ 2.00GHz
+      Stepping:                        3
+      CPU MHz:                         2000.212
+      BogoMIPS:                        4000.42
+      Hypervisor vendor:               KVM
+      Virtualization type:             full
+      L1d cache:                       32 KiB
+      L1i cache:                       32 KiB
+      L2 cache:                        1 MiB
+      L3 cache:                        38.5 MiB
+      NUMA node0 CPU(s):               0,1
+      Vulnerability Itlb multihit:     Not affected
+      Vulnerability L1tf:              Mitigation; PTE Inversion
+      Vulnerability Mds:               Vulnerable; SMT Host state unknown
+      Vulnerability Meltdown:          Vulnerable
+      Vulnerability Mmio stale data:   Vulnerable
+      Vulnerability Retbleed:          Vulnerable
+      Vulnerability Spec store bypass: Vulnerable
+      Vulnerability Spectre v1:        Vulnerable: __user pointer sanitization and use
+                                       rcopy barriers only; no swapgs barriers
+      Vulnerability Spectre v2:        Vulnerable, IBPB: disabled, STIBP: disabled, PB
+                                       RSB-eIBRS: Not affected
+      Vulnerability Srbds:             Not affected
+      Vulnerability Tsx async abort:   Vulnerable
+      Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtr
+                                       r pge mca cmov pat pse36 clflush mmx fxsr sse s
+                                       se2 ss ht syscall nx pdpe1gb rdtscp lm constant
+                                       _tsc rep_good nopl xtopology nonstop_tsc cpuid 
+                                       tsc_known_freq pni pclmulqdq ssse3 fma cx16 pci
+                                       d sse4_1 sse4_2 x2apic movbe popcnt aes xsave a
+                                       vx f16c rdrand hypervisor lahf_lm abm 3dnowpref
+                                       etch invpcid_single ssbd ibrs ibpb stibp fsgsba
+                                       se tsc_adjust bmi1 hle avx2 smep bmi2 erms invp
+                                       cid rtm mpx avx512f avx512dq rdseed adx smap cl
+                                       flushopt clwb avx512cd avx512bw avx512vl xsaveo
+                                       pt xsavec xgetbv1 xsaves arat md_clear arch_cap
+                                       abilities
 
 ##############################################################################################################################################################
 # This section is about the setup of a spaCy project for NER-CTI.                                                                                            #
