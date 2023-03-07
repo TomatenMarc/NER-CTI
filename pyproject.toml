@@ -8,6 +8,7 @@ authors = ["feger <marc.feger@uni-duesseldorf.de>"]
 python = "^3.10"
 spacy = {extras = ["transformers", "lookups"], version = "^3.5.0"}
 spacy-lookups-data = "^1.0.3"
+jupyter = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 
