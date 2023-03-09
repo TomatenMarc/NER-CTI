@@ -124,38 +124,45 @@ When encountering out-of-distribution words, tok2vec and transformers handle the
 
 --------------
 
-## Basic Entities Labels
-All spaCy pipelines provide a basic set of 18 entities to be interpreted as:
+## Domain Adaptation
+In STIX, the focus is on representing and sharing threat intelligence across different organizations and industries. While STIX includes a number of entity  types that are relevant to threat intelligence, it does not provide built-in tools for training custom named entity recognizers. 
+As a result, organizations that want to create their own custom NER models for STIX data would need to use external tools or libraries,  such as Python's scikit-learn or Keras, to train and evaluate their models.
 
-    CARDINAL : Numerals that do not fall under another type
-    DATE : Absolute or relative dates or periods
-    EVENT : Named hurricanes, battles, wars, sports events, etc.
-    FAC : Buildings, airports, highways, bridges, etc.
-    GPE : Countries, cities, states
-    LANGUAGE : Any named language
-    LAW : Named documents made into laws.
-    LOC : Non-GPE locations, mountain ranges, bodies of water
-    MONEY : Monetary values, including unit
-    NORP : Nationalities or religious or political groups
-    ORDINAL : "first", "second", etc.
-    ORG : Companies, agencies, institutions, etc.
-    PERCENT : Percentage, including "%"
-    PERSON : People, including fictional
-    PRODUCT : Objects, vehicles, foods, etc. (not services)
-    QUANTITY : Measurements, as of weight or distance
-    TIME : Times smaller than a day
-    WORK_OF_ART : Titles of books, songs, etc.
+In contrast, spaCy provides built-in tools for training custom NER models using its machine learning library. This allows organizations to train models that  are specifically tailored to their own domain or industry, and can recognize entities that are not present in spaCy's default NER model.   SpaCy's default NER model includes several entity types, such as PERSON, ORG, GPE, DATE, TIME, MONEY, and PERCENT. These entities are commonly found in natural language text and are therefore included in the default model to provide a general-purpose solution for named  entity recognition. The default entity recognizer in spaCy is trained on large amounts of general text data, and as such, it may not perform as well on more  specialized or domain-specific texts. 
 
-These basic entity labels provide a solid ground for the most and common nlp setups. However, certain use-cases like NER-CTI other [downstream-tasks](https://ai.stackexchange.com/questions/28410/which-tasks-are-called-as-downstream-tasks)  require specific entity-labels like those of STIX. For these szenarios spaCy provides a detailed workflow.
+Somehow, a general purpose NER system is not enough. In such cases, domain adaptation becomes crucial to improve the model's performance on specific entities in a particular domain. For example, a company that specializes in healthcare data could train a custom NER model to recognize medical terms and drug names,  while a legal firm could train a model to recognize legal terms and case names.
+spaCy's approach to domain adaptation involves using transfer learning and fine-tuning techniques to train custom models based on pre-existing models.  This allows organizations to leverage the knowledge and expertise of spaCy's default models, while adapting them to their own domain-specific needs. 
 ## Workflow
+  
+<figure>
+  <img src="https://spacy.io/images/projects.svg">
+  <figcaption>A diagram of how spacy's workflow. <em>(Source: https://spacy.io/images/projects.svg)</em></figcaption>
+</figure>
 
-<img src="https://spacy.io/images/projects.svg">
+The spaCy project template is a set of starter code and directory structure that can be used to quickly start building an NLP project. A standard directory structure is included to help with organizing code and data, including directories for data, models, and code, as well as subdirectories  for specific tasks, such as storing assets like training data, annotations, and preprocessed data.
+The template also includes configuration files that define the settings for various push-button components of the spaCy pipeline that can be configured online. The configuration files can be modified to adjust the behavior of the pipeline.
+The spaCy project template also contains comfort functions for common NLP tasks, such as loading and converting data, training models, evaluating models,  and generating debug information on new data. This code can be customized to suit specific use cases.
+Further, this documentation provides guidance on installing spaCy, setting up the project, and running the code and also offers examples of how to use the code.
 
 ## Training
+To train a custom model in spaCy, the training data needs to be prepared in the format expected by spaCy, which includes a text input and a dictionary of  annotations such as named entities or part-of-speech tags.
 
-<img src="https://spacy.io/images/training.svg">
+Once the training data is ready, the spaCy training API can be used to train a custom model. The training API allows users to specify various hyperparameters, such as the number of iterations, the learning rate, and the dropout rate. These hyperparameters have a significant impact on the performance of the model,  so it's important to experiment with different values to find the optimal configuration.
 
+During the training process, spaCy updates the model's weights based on the training examples and the specified hyperparameters. This process continues for a specified number of iterations or until the model's performance on a validation set stops improving.
+<figure>
+  <img src="https://spacy.io/images/training.svg">
+  <figcaption>A diagram of how spacy's workflow. <em>(Source: https://spacy.io/images/training.svg)</em></figcaption>
+</figure>
+
+After training, the performance of the model can be evaluated using spaCy's evaluation API, which allows users to measure metrics such as accuracy, precision, and recall. The model can also be used to make predictions on new data using spaCy's prediction API.
+
+One of the benefits of spaCy's training process is the ability to fine-tune pre-existing models to improve their performance on specific tasks or domains.  This is known as transfer learning and can save a lot of time and effort compared to training a model from scratch.
 ## Hardware
+The required GPU memory for training a spaCy model will vary depending on the size of the model and training data. Generally, spaCy recommends a minimum  of 10GB of GPU memory for most tasks, with larger models and datasets might require 16GB or more.
+
+Google Colab offers a free platform for training machine learning models, including spaCy models, using a Tesla T4 GPU with 16GB of memory for up to 12h.  However, it might happen that the access might be denied as free use of GPU depends on the overall usage and free resources at Google.   This is usually sufficient for most spaCy models. Nonetheless, if one needs more memory, Colab also offers paid plans with access to more powerful GPUs,  such as the NVIDIA P100 and 24h+ guaranteed usage per run.
+Following the usage of training a pipeline for NER with tok2vec and transformers is shown:
 
     Environment: Google-Colab  
     GPU 0: Tesla T4 (UUID: GPU-616858e9-5652-63ea-cf1a-e7df8574dc8e)
