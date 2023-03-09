@@ -20,11 +20,10 @@ With this horizon in mind, CIR is a critical part of MI operations, tasked with 
 Straightforward, this report focus on the cutting-edge technology spaCy and its potential use for military intelligence and its benefits for monitoring by CIR.
 
 ## :mortar_board: Task definition of NER
-[Named Entity Recognition (NER)](https://deepai.org/machine-learning-glossary-and-terms/named-entity-recognition) is a fascinating field of  [Natural Language Processing (NLP)](https://www.ibm.com/topics/natural-language-processing) that involves the automatic identification and classification of  specific named entities such as people, places, organizations, and other objects of interest mentioned in text. This process involves sequence labeling at  the token level, where each word in a given text is analyzed for its context and syntax to determine whether it represents a named entity. NER can be performed using various techniques, including rule-based approaches, Conditional Random Fields (CRFs), and deep neural networks, each with its own advantages and limitations.
+[Named Entity Recognition (NER)](https://deepai.org/machine-learning-glossary-and-terms/named-entity-recognition) is a fascinating field of  [Natural Language Processing (NLP)](https://www.ibm.com/topics/natural-language-processing) that involves the automatic identification and classification of  specific named entities such as people, places, organizations, and other objects of interest mentioned in text. This process involves sequence labeling at  the token level, where each word in a given text is analyzed for its context and syntax to determine whether it represents a named entity. NER can be performed using various techniques, including [rule-based approaches](https://ner.pythonhumanities.com/02_01_spaCy_Entity_Ruler.html), [Conditional Random Fields (CRFs)](https://medium.com/data-science-in-your-pocket/named-entity-recognition-ner-using-conditional-random-fields-in-nlp-3660df22e95c), and [deep neural networks](https://www.ibm.com/topics/deep-learning), each with its own advantages and limitations.
 
-<embed src="https://github.com/TomatenMarc/NER-CTI/blob/introduce/spacy-project-structure/graphics/NER-Example.pdf" type="application/pdf" width="100%" height="600px" />
-
-State-of-the-art NER systems, however, rely on advanced machine learning algorithms, such as Convolutional Neural Networks (CNNs),  Recurrent Neural Networks (RNNs), and Transformer models like BERT and GPT, to achieve high accuracy and efficiency.  Speaking about the performance, NER is often evaluated using standard benchmarks such as [CoNLL](#conll) datasets, which uses the [BIO](#bio) format to  annotate named entities in text. Another related dataset for benchmarking NER systems is [OntoNotes](https://catalog.ldc.upenn.edu/LDC2013T19). 
+  
+State-of-the-art NER systems, however, rely on advanced machine learning algorithms, such as [Convolutional Neural Networks (CNNs)](https://medium.com/voice-tech-podcast/text-classification-using-cnn-9ade8155dfb9),  [Recurrent Neural Networks (RNNs)](https://www.ibm.com/de-de/topics/recurrent-neural-networks), and Transformer models like [BERT and GPT](https://www.ibm.com/blogs/watson/2020/12/how-bert-and-gpt-models-change-the-game-for-nlp/), to achieve high accuracy and efficiency. Speaking about the performance, NER is often evaluated using standard benchmarks such as [CoNLL](#conll) datasets,  which uses the [BIO](#bio) format to annotate named entities in text. Another related dataset for benchmarking NER systems is [OntoNotes](https://catalog.ldc.upenn.edu/LDC2013T19). 
 ### :green_apple: BIO
 The [BIO](https://medium.com/analytics-vidhya/bio-tagged-text-to-original-text-99b05da6664) notation is a commonly used labeling scheme in NER tasks.  In this format, each token in a text is labeled with a prefix indicating whether it belongs to a named entity and, if so, what type of entity it is. The prefix is either "B", "I", or "O", where:
 B (Beginning) indicates that the token is the beginning of a named entity. I (Inside) indicates that the token is inside a named entity. O (Outside) indicates that the token is not part of a named entity.
@@ -104,18 +103,18 @@ The SpaCy pipeline is a sequence of NLP components that are applied to a text do
   <figcaption>A diagram of the Spacy pipeline <em>(Source: https://spacy.io/images/pipeline.svg)</em></figcaption>
 </figure>
 
-At its core is the [nlp](https://spacy.io/usage/processing-pipelines) object, which represents the pipeline itself.
-The pipeline starts by tokenizing the text, or breaking it up into individual words or sub-word units. Then, the POS tagger assigns a part-of-speech tag to  each token, such as "noun", "verb", "adjective", etc. Next, the dependency parser analyzes the relationships between the tokens in the sentence, identifying  the grammatical structure and dependencies between words. Consequently, the NER component then identifies and extracts named entities, such as people, organizations, and locations, from the text.  This capability in turn can be used to extract structured data from unstructured text, such as building a knowledge graph or generating a database.
+At its core is the [nlp object](https://spacy.io/usage/processing-pipelines), which represents the pipeline itself.
+The pipeline starts by tokenizing the text, or breaking it up into individual words or sub-word units. Then, the POS tagger assigns a part-of-speech tag to  each token, such as "noun", "verb", "adjective", etc. Next, the dependency parser analyzes the relationships between the tokens in the sentence, identifying  the grammatical structure and dependencies between words. Consequently, the NER component then identifies and extracts named entities, such as people, organizations, and locations, from the text.  This capability in turn can be used to extract structured data from unstructured text, such as building a [knowledge graph or database](https://www.ibm.com/topics/knowledge-graph).
 
-Also it's worth noting that the components of the SpaCy pipeline is designed to be flexible and modular, so developers can choose to use all or some of them, or  even add [custom components](https://spacy.io/usage/training#custom-functions) as needed.
+Also it's worth noting that the components of the spaCy pipeline is designed to be flexible and modular, so developers can choose to use all or some of them, or  even add [custom components](https://spacy.io/usage/training#custom-functions) as needed.
 
-Overall, a pipeline returns a so-called [Doc](https://spacy.io/api/doc#_title) object representing a processed document of text, that contains a sequence of  [Token](https://spacy.io/api/token) objects represent individual words or other elements of the text, such as punctuation or whitespace.  Each Token object has a variety of properties and annotations, such as its lemma, part-of-speech tag, and named entity labels. The nlp object also provides a range of convenient methods and attributes for working with processed documents, such as accessing specific tokens or entities, visualizing the document structure, or performing similarity calculations between documents.
+Overall, a pipeline returns a so-called [Doc object](https://spacy.io/api/doc#_title) representing a processed document of text, that contains a sequence of  [Token objects](https://spacy.io/api/token) represent individual words or other elements of the text, such as punctuation or whitespace.  Each Token object has a variety of properties and annotations, such as its [lemma](https://medium.com/mlearning-ai/nlp-03-lemmatization-and-stemming-using-spacy-b2829becceca), [part-of-speech tag](https://medium.com/mlearning-ai/nlp-04-part-of-speech-tagging-in-spacy-dc3e239c2726), and named entity labels. The nlp object also provides a range of convenient methods and attributes for working with processed documents, such as accessing specific tokens or entities, [visualizing the document structure](https://spacy.io/universe/project/displacy), or performing similarity calculations between documents.
 ## :telescope: Turning text into features
 spacy's pipeline components, such as the part-of-speech tagger, dependency parser, and named entity recognizer, can listen to the text representation  components tok2vec or transformers to extract useful features for their respective tasks. These features are learned through pre-training on large corpora of  text, and can capture important semantic and syntactic relationships between words. By using pre-trained vectors, the text representation component can improve the accuracy and robustness of these downstream components, as they can better capture the nuances of natural language.
 <figure>
   <img src="https://spacy.io/images/tok2vec-listener.svg" alt="Spacy listener diagram">
-  <figcaption>A diagram of how spacy's components listen to text features. <em>(Source: https://spacy.io/images/tok2vec-listener.svg)
-</em></figcaption> </figure>
+  <figcaption>A diagram of how spacy's components listen to text features. <em>(Source: https://spacy.io/images/tok2vec-listener.svg)</em></figcaption>
+</figure>
 
 The [tok2vec](https://spacy.io/api/tok2vec#_title) component in spacy's pipeline uses a [convolutional neural network (CNN)](https://spacy.io/models#design-cnn) architecture to generate word embeddings that capture local context information. These embeddings are pre-trained on a large corpus of text using a  self-supervised learning approach. Specifically, the CNN is trained to predict the word that appears in the center of a fixed-size window of surrounding words. By doing so, the model learns to capture important local context information that is useful for downstream tasks such as part-of-speech tagging and named  entity recognition.
 
@@ -147,7 +146,7 @@ All spaCy pipelines provide a basic set of 18 entities to be interpreted as:
     TIME : Times smaller than a day
     WORK_OF_ART : Titles of books, songs, etc.
 
-These basic entity labels provide a solid ground for the most and common nlp setups. However, certain use-cases like NER-CTI other downstream-tasks require specific entity-labels like those of STIX. For these szenarios spaCy provides a detailed workflow.
+These basic entity labels provide a solid ground for the most and common nlp setups. However, certain use-cases like NER-CTI other [downstream-tasks](https://ai.stackexchange.com/questions/28410/which-tasks-are-called-as-downstream-tasks)  require specific entity-labels like those of STIX. For these szenarios spaCy provides a detailed workflow.
 ## Workflow
 
 <img src="https://spacy.io/images/projects.svg">
@@ -161,7 +160,7 @@ These basic entity labels provide a solid ground for the most and common nlp set
     Environment: Google-Colab  
     GPU 0: Tesla T4 (UUID: GPU-616858e9-5652-63ea-cf1a-e7df8574dc8e)
     Used: ~13.3 of 16 GB GPU for training over 1h and 40 minutes.
-    
+
     +-----------------------------------------------------------------------------+
     | NVIDIA-SMI 525.85.12    Driver Version: 525.85.12    CUDA Version: 12.0     |
     |-------------------------------+----------------------+----------------------+
