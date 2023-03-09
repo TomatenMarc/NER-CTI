@@ -65,9 +65,10 @@ description: >
 
     
   State-of-the-art NER systems, however, rely on advanced machine learning algorithms, such as [Convolutional Neural Networks (CNNs)](https://medium.com/voice-tech-podcast/text-classification-using-cnn-9ade8155dfb9), 
-  [Recurrent Neural Networks (RNNs)](https://www.ibm.com/de-de/topics/recurrent-neural-networks), and Transformer models like [BERT and GPT](https://www.ibm.com/blogs/watson/2020/12/how-bert-and-gpt-models-change-the-game-for-nlp/),
-  to achieve high accuracy and efficiency. Speaking about the performance, NER is often evaluated using standard benchmarks such as [CoNLL](#conll) datasets, 
-  which uses the [BIO](#bio) format to annotate named entities in text. Another related dataset for benchmarking NER systems is [OntoNotes](https://catalog.ldc.upenn.edu/LDC2013T19). 
+  [Recurrent Neural Networks (RNNs)](https://www.ibm.com/de-de/topics/recurrent-neural-networks), and [Transformer models](https://towardsdatascience.com/transformers-89034557de14)
+  like [BERT and GPT](https://www.ibm.com/blogs/watson/2020/12/how-bert-and-gpt-models-change-the-game-for-nlp/), to achieve high accuracy and efficiency.
+  Speaking about the performance, NER is often evaluated using standard benchmarks such as [CoNLL](#conll) datasets, which uses the [BIO](#bio) format to 
+  annotate named entities in text. Another related dataset for benchmarking NER systems is [OntoNotes](https://catalog.ldc.upenn.edu/LDC2013T19). 
   
   ### :green_apple: BIO
 
