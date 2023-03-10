@@ -302,20 +302,17 @@ description: >
   The [transformers](https://spacy.io/usage/embeddings-transformers) component, on the other hand, uses a 
   [self-attention mechanism](https://machinelearningmastery.com/the-transformer-attention-mechanism/) to generate contextualized word embeddings that 
   capture both local and global context information. The model is pre-trained on large corpora of text using a [self-supervised learning](https://ai.facebook.com/blog/self-supervised-learning-the-dark-matter-of-intelligence/)
-  approach known as masked language modeling. Specifically, the model is trained to predict the masked words in a sentence by attending to the surrounding words in the context. 
-  This approach allows the model to learn rich contextual representations that capture complex relationships between words and are useful for a wide range of
-  natural language processing tasks.
+  approach known as [masked language modeling (MLM)](https://towardsdatascience.com/masked-language-modelling-with-bert-7d49793e5d2c). 
+  Specifically, the model is trained to predict the masked words in a sentence by attending to the surrounding words in the context. 
+  This approach allows the model to learn rich contextual representations that capture complex relationships between words and are useful for a wide range of NLP tasks.
   
   
   When encountering out-of-distribution words, tok2vec and transformers handle them in different ways. For tok2vec, these words are treated as unknown and 
-  assigned a zero vector. However, this can sometimes lead to poor performance on tasks that require handling of rare or unseen words. To address this, spacy 
-  provides options to fine-tune the tok2vec component on domain-specific data to better handle out-of-distribution words.
+  assigned a zero vector. However, this can sometimes lead to poor performance (around 50% (P, R, F1)) on tasks that require handling of rare or unseen words.
+  To address this, spaCy provides options to fine-tune the tok2vec component on domain-specific data to better handle out-of-distribution words.
   Transformers, on the other hand, use a contextualized approach that allows the model to generate a representation for any word in the context of 
   the surrounding text. This means that even if a word is out of distribution, the transformer can still 
   [generate a meaningful representation](https://ai.googleblog.com/2021/12/a-fast-wordpiece-tokenization-system.html) based on the context in which the word appears.
-  
-  
-  --------------
   
   
   ## Domain Adaptation
@@ -324,12 +321,13 @@ description: >
   types that are relevant to threat intelligence, it does not provide built-in tools for training custom named entity recognizers. 
   
   As a result, organizations that want to create their own custom NER models for STIX data would need to use external tools or libraries, 
-  such as Python's scikit-learn or Keras, to train and evaluate their models.
+  such as Python's [scikit-learn](https://scikit-learn.org/stable/) or [TensorFlow](https://www.tensorflow.org), to train and evaluate their models.
 
 
   In contrast, spaCy provides built-in tools for training custom NER models using its machine learning library. This allows organizations to train models that 
   are specifically tailored to their own domain or industry, and can recognize entities that are not present in spaCy's default NER model.  
-  SpaCy's default NER model includes several entity types, such as PERSON, ORG, GPE, DATE, TIME, MONEY, and PERCENT.
+  
+  As a reminder, spaCy's default NER model includes several entity types, such as PERSON, ORG, GPE, DATE, TIME, MONEY, and PERCENT.
   These entities are commonly found in natural language text and are therefore included in the default model to provide a general-purpose solution for named 
   entity recognition. The default entity recognizer in spaCy is trained on large amounts of general text data, and as such, it may not perform as well on more 
   specialized or domain-specific texts. 
@@ -340,7 +338,7 @@ description: >
   For example, a company that specializes in healthcare data could train a custom NER model to recognize medical terms and drug names, 
   while a legal firm could train a model to recognize legal terms and case names.
 
-  spaCy's approach to domain adaptation involves using transfer learning and fine-tuning techniques to train custom models based on pre-existing models. 
+  Altogether, spaCy's approach to domain adaptation involves using transfer learning and fine-tuning techniques to train custom models based on pre-existing models. 
   This allows organizations to leverage the knowledge and expertise of spaCy's default models, while adapting them to their own domain-specific needs. 
   
   ## Workflow
@@ -351,14 +349,15 @@ description: >
   </figure>
   
   
-  The spaCy project template is a set of starter code and directory structure that can be used to quickly start building an NLP project.
+  The [spaCy project template](https://spacy.io/usage/projects#project-yml) is a set of starter code and directory structure that can be used to quickly start building an NLP project.
   A standard directory structure is included to help with organizing code and data, including directories for data, models, and code, as well as subdirectories 
   for specific tasks, such as storing assets like training data, annotations, and preprocessed data.
 
-  The template also includes configuration files that define the settings for various push-button components of the spaCy pipeline that can be configured online.
-  The configuration files can be modified to adjust the behavior of the pipeline.
+  The template also includes [configuration files](https://spacy.io/usage/training#quickstart) that define the settings for various push-button components of 
+  the spaCy pipeline that can be configured online.
+  The configuration files can be [modified or extended](https://spacy.io/usage/layers-architectures#frameworks-usage) to adjust the behavior of the pipeline.
 
-  The spaCy project template also contains comfort functions for common NLP tasks, such as loading and converting data, training models, evaluating models, 
+  The spaCy project template also contains [comfort functions](https://spacy.io/api/cli#_title) for common NLP tasks, such as loading and converting data, training models, evaluating models, 
   and generating debug information on new data. This code can be customized to suit specific use cases.
   
   Further, this documentation provides guidance on installing spaCy, setting up the project, and running the code and also offers examples of how to use the code.
@@ -366,7 +365,7 @@ description: >
   
   ## Training
   
-  To train a custom model in spaCy, the training data needs to be prepared in the format expected by spaCy, which includes a text input and a dictionary of 
+  To [train a model](https://spacy.io/usage/training) in spaCy, the training data needs to be prepared in the format expected by spaCy, which includes a text input and a dictionary of 
   annotations such as named entities or part-of-speech tags.
 
 
@@ -397,7 +396,8 @@ description: >
   of 10GB of GPU memory for most tasks, with larger models and datasets might require 16GB or more.
 
 
-  Google Colab offers a free platform for training machine learning models, including spaCy models, using a Tesla T4 GPU with 16GB of memory for up to 12h. 
+  [Google Colab](https://colab.research.google.com) offers a free platform for training machine learning models, including spaCy models, using a [Tesla T4 GPU](https://www.nvidia.com/de-de/data-center/tesla-t4/)
+  with 16GB of memory for up to 12h. 
   However, it might happen that the access might be denied as free use of GPU depends on the overall usage and free resources at Google.  
   This is usually sufficient for most spaCy models. Nonetheless, if one needs more memory, Colab also offers paid plans with access to more powerful GPUs, 
   such as the NVIDIA P100 and 24h+ guaranteed usage per run.
