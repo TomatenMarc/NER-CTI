@@ -5,6 +5,8 @@
 
 This report is part of an internship at [ZDigBw](https://www.bundeswehr.de/de/organisation/cyber-und-informationsraum/kommando-und-organisation-cir/zentrum-digitalisierung-der-bundeswehr).
 
+To run this project [poetry](https://python-poetry.org) has to be installed.
+
 With the exponential growth of digital data, the need for efficient and effective processing of nearly unlimited information has become more pressing  than ever before. In the realm of [Cyber Threat Intelligence (CTI)](https://www.kaspersky.com/resource-center/definitions/threat-intelligence), one of the key challenges is  identifying the interesting parts of large volumes of fluent text data. Having stated this particular problem, [Named Entity Recognition (NER)](#task-definition-of-ner) is a crucial tool in this process, enabling analysts to  automatically identify and name entities such as persons, dates, organizations, and locations appearing in unstructured text.  However, [Named Entity Recognition of Cyber Threat Intelligence (NER-CTI)](#task-definition-of-ner-cti) differs from standard NER as it requires  domain adaptation of the labels, which may differ from the standard labels for entities in the real word.
 
 While traditional NER tools can be complex and time-consuming, [spaCy](https://spacy.io) provides an [end-to-end solution](https://www.adamos.com/glossar/end-to-end/) that offers fast and efficient NER and other NLP tasks. One of the advantages of spaCy is its flexibility for [domain adaptation](https://towardsdatascience.com/understanding-domain-adaptation-5baa723ac71f), allowing users to [train their own models](https://spacy.io/usage/training) on custom labels and text data. This is a critical advantage in CTI, where the ability to adapt to new and evolving threats are essential.
@@ -261,6 +263,10 @@ Following the usage of training a pipeline for NER with tok2vec and transformers
                                      flushopt clwb avx512cd avx512bw avx512vl xsaveo
                                      pt xsavec xgetbv1 xsaves arat md_clear arch_cap
                                      abilities
+
+# The final model
+The final model can be traced in `./models/`. Please note that some files are missing due to their size and hence the models can not be used for prediction but for  inspection.
+To get the binaries, files or if you have other problems please contact: `marc.feger@icloud.com`.
 
 
 ## 📋 project.yml

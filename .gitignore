@@ -11,3 +11,5 @@ vocab
 model
 moves
 tokenizer
+
+.DS_Store
