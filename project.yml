@@ -4,6 +4,9 @@ description: >
   This report is part of an internship at [ZDigBw](https://www.bundeswehr.de/de/organisation/cyber-und-informationsraum/kommando-und-organisation-cir/zentrum-digitalisierung-der-bundeswehr).
   
   
+  To run this project [poetry](https://python-poetry.org) has to be installed.
+  
+  
   With the exponential growth of digital data, the need for efficient and effective processing of nearly unlimited information has become more pressing 
   than ever before.
   In the realm of [Cyber Threat Intelligence (CTI)](https://www.kaspersky.com/resource-center/definitions/threat-intelligence), one of the key challenges is 
@@ -478,6 +481,13 @@ description: >
                                        flushopt clwb avx512cd avx512bw avx512vl xsaveo
                                        pt xsavec xgetbv1 xsaves arat md_clear arch_cap
                                        abilities
+
+  # The final model
+  
+  The final model can be traced in `./models/`. Please note that the respective binaries are missing and hence the models can not be used for prediction but for 
+  inspection.
+  
+  To get the binary or other problems please contact: `marc.feger@icloud.com`.
 
 ##############################################################################################################################################################
 # This section is about the setup of a spaCy project for NER-CTI.                                                                                            #
