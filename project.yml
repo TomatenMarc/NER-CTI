@@ -1,6 +1,8 @@
 title: 'A End-To-End pipline for Named Entity Recognition of Cyber Threat Intelligence.'
 description: >
   
+  This report is part of an internship at [ZDigBw](https://www.bundeswehr.de/de/organisation/cyber-und-informationsraum/kommando-und-organisation-cir/zentrum-digitalisierung-der-bundeswehr).
+  
   With the exponential growth of digital data, the need for efficient and effective processing of nearly unlimited information has become more pressing 
   than ever before.
   In the realm of [Cyber Threat Intelligence (CTI)](https://www.kaspersky.com/resource-center/definitions/threat-intelligence), one of the key challenges is 
@@ -11,10 +13,11 @@ description: >
   domain adaptation of the labels, which may differ from the standard labels for entities in the real word.
 
 
-  While traditional NER tools can be complex and time-consuming, [spaCy](https://spacy.io) provides an end-to-end solution that offers fast and efficient 
-  NER and other NLP tasks.
-  One of the advantages of spaCy is its flexibility for domain adaptation, allowing users to [train their own models](https://spacy.io/usage/training) on custom
-  labels and text data. This is a critical advantage in CTI, where the ability to adapt to new and evolving threats is essential.
+  While traditional NER tools can be complex and time-consuming, [spaCy](https://spacy.io) provides an [end-to-end solution](https://www.adamos.com/glossar/end-to-end/)
+  that offers fast and efficient NER and other NLP tasks.
+  One of the advantages of spaCy is its flexibility for [domain adaptation](https://towardsdatascience.com/understanding-domain-adaptation-5baa723ac71f),
+  allowing users to [train their own models](https://spacy.io/usage/training) on custom labels and text data.
+  This is a critical advantage in CTI, where the ability to adapt to new and evolving threats are essential.
 
 
   In comparison, academic projects like [CoreNLP](https://stanfordnlp.github.io/CoreNLP/) may be less flexible when it comes to domain adaptation, as they are 
@@ -22,35 +25,39 @@ description: >
   as effective in real-world CTI scenarios where rapid adaptation is key.
 
   CTI data generally comes from the [Cyberspace](https://www.oxfordlearnersdictionaries.com/definition/american_english/cyberspace) which is protected by
-  organizations like the [Cyber Information Room (CIR)](https://www.bundeswehr.de/en/organization/the-cyber-and-information-domain-service).
+  organizations like the [Commando Cyber Information Room (Cdo CIR)](https://www.bundeswehr.de/en/organization/the-cyber-and-information-domain-service).
   In the mindset of this report, parts of CIR are responsible for collecting, analyzing, and disseminating information related to cyber threats.
   
   
-  These information can take the form of digital reports from a variety of sources, including domain experts, cyber security facilities, new reports, and other
-  digital sources. Processing these reports are essential in getting a global perspective of a situation, and this is where spaCy comes in.
+  These information can take the form of digital reports from a variety of sources, including domain experts, [cyber security facilities](https://www.kaspersky.de),
+  [new reports](https://edition.cnn.com/2022/06/23/tech/apple-android-italian-spyware-hack/index.html), and [other digital sources](https://securelist.com/malware-for-the-new-apple-silicon-platform/101137/).
+  Processing these reports are essential in getting a global perspective of a situation, and this is where spaCy comes in.
   With its pre-trained models for [23 languages](https://spacy.io/usage/models#languages) including also the ability to process multi-lingual data, 
   analysts can easily start processing and analyzing reports without needing to invest time in building their own [NLP pipelines](https://spacy.io/api).
   Moreover, spaCy's focus on [deep learning](https://spacy.io/api/architectures#transformers) and [neural networks](https://spacy.io/usage/v2#summary) puts it 
-  at the cutting edge of NLP research, offering the latest and most advanced techniques for NER and other NLP tasks.
+  at the cutting edge of NLP research, offering the [latest and most advanced techniques](https://spacy.io/usage/v3-5#features) for NER and other NLP tasks.
 
 
   One of the advantages of spaCy is its extensive [command line interface (CLI)](https://spacy.io/api/cli), which allows users to access a wide range of NLP 
   tasks without needing to write code. This CLI makes it particularly attractive for industry situations, where ease of use and deploy-ability are key concerns.
-  In contrast, academic projects often require more customization and fine-tuning, which can make traditional NER tools more appropriate.
+  In contrast, academic projects often require more customization and fine-tuning, which can make these NER tools more inappropriate when it comes to a 
+  industry-scale applications and specialized domains like CTI evolving especially in data volume over time.
   However, for analysts working in the fast-paced world of [military intelligence (MI)](https://www.collinsdictionary.com/dictionary/english/military-intelligence),
   [spaCy's efficiency and ease of use](https://spacy.io/usage/facts-figures) make it an invaluable tool for processing and analyzing large volumes of CTI data.
 
-
-  Speaking generally about the domain of MI and CTI, the ability to quickly and accurately process large volumes of information is essential.
+  
+  In general, for MI and CTI, the ability to process large amounts of information quickly and accurately is critical, and writing nearly the same code over and
+  over again, for every single subdomain and associated subset of the available dataset seems almost unfeasible for military applications.
   By leveraging the power of spaCy, analysts can [streamline their workflow](https://spacy.io/usage/projects) and focus on analysis rather than technicalities.
-  This report explores the exciting world of spaCy and how it is leading the charge in the fight against cyber attacks. 
+  This report explores the exciting world of spaCy and how it is leading the charge in the fight against cyber attacks or to simply introduce a push-button 
+  playground for analysts of Cdo CIR dealing with NLP problems. 
 
 
-  With this horizon in mind, CIR is a critical part of MI operations, tasked with monitoring and responding to cyber threats. 
-  By collecting and analyzing data from a variety of sources, the CIR provides a comprehensive view of the cyber threat landscape and enables analysts to take 
+  With this horizon in mind, Cdo CIR serves critical parts of MI operations, tasked with monitoring and responding to cyber threats. 
+  By collecting and analyzing data from a variety of sources, the Cdo CIR provides a comprehensive view of the cyber threat landscape and enables analysts to take 
   proactive measures to defend against attacks.
   
-  Straightforward, this report focus on the cutting-edge technology spaCy and its potential use for military intelligence and its benefits for monitoring by CIR.
+  Straightforward, this report focus on the cutting-edge technology spaCy and its potential use for military intelligence and its benefits for monitoring by Cdo CIR.
   
   
   ## :mortar_board: Task definition of NER
@@ -58,7 +65,7 @@ description: >
   [Named Entity Recognition (NER)](https://deepai.org/machine-learning-glossary-and-terms/named-entity-recognition) is a fascinating field of 
   [Natural Language Processing (NLP)](https://www.ibm.com/topics/natural-language-processing) that involves the automatic identification and classification of 
   specific named entities such as people, places, organizations, and other objects of interest mentioned in text. This process involves sequence labeling at 
-  the token level, where each word in a given text is analyzed for its context and syntax to determine whether it represents a named entity.
+  the token level, where each word in a given text, is analyzed for its context and syntax to determine whether it represents a named entity.
   NER can be performed using various techniques, including [rule-based approaches](https://ner.pythonhumanities.com/02_01_spaCy_Entity_Ruler.html),
   [Conditional Random Fields (CRFs)](https://medium.com/data-science-in-your-pocket/named-entity-recognition-ner-using-conditional-random-fields-in-nlp-3660df22e95c),
   and [deep neural networks](https://www.ibm.com/topics/deep-learning), each with its own advantages and limitations.
@@ -68,7 +75,7 @@ description: >
   [Recurrent Neural Networks (RNNs)](https://www.ibm.com/de-de/topics/recurrent-neural-networks), and [Transformer models](https://towardsdatascience.com/transformers-89034557de14)
   like [BERT and GPT](https://www.ibm.com/blogs/watson/2020/12/how-bert-and-gpt-models-change-the-game-for-nlp/), to achieve high accuracy and efficiency.
   Speaking about the performance, NER is often evaluated using standard benchmarks such as [CoNLL](#conll) datasets, which uses the [BIO](#bio) format to 
-  annotate named entities in text. Another related dataset for benchmarking NER systems is [OntoNotes](https://catalog.ldc.upenn.edu/LDC2013T19). 
+  annotate named entities and their boundaries in text. Another related dataset for benchmarking NER systems is [OntoNotes](https://catalog.ldc.upenn.edu/LDC2013T19). 
   
   ### :green_apple: BIO
 
@@ -87,6 +94,24 @@ description: >
 
   In this example, "John" is the beginning of a person (PER) entity, "New York" is the beginning of a location (LOC) entity, and "City" is 
   inside the same location entity.
+  
+  
+  Please note: The Zipfian distribution (also known as [Zipf's law](https://medium.com/@_init_/using-zipfs-law-to-improve-neural-language-models-4c3d66e6d2f6))
+  is a statistical phenomenon that describes the relationship between the frequency of a word in a corpus and its rank in that corpus. According to Zipf's law, 
+  the frequency of a word is inversely proportional to its rank: the most frequent word occurs roughly twice as often as the second most frequent word, three 
+  times as often as the third most frequent word, and so on.
+  
+  
+  Because named entities are relatively rare compared to other types of words in natural language text, they tend to follow a Zipfian distribution.
+  This means that a small number of entity types (such as "person", "location", and "organization") account for the majority of entities in a corpus, while many
+  other entity types occur very infrequently.
+
+
+  In the BIO format, this Zipfian distribution of entity types can lead to an imbalanced dataset. Specifically, there will be many more tokens labeled "O" 
+  (outside an entity) than "B" or "I" tokens, because the vast majority of tokens in the corpus are not part of any named entity. This imbalance can pose a
+  challenge for machine learning models trained on BIO-labeled data, as they may struggle to learn the patterns that distinguish entity tokens from non-entity tokens.
+
+
 
   ### :black_nib: CoNLL
 
@@ -113,6 +138,7 @@ description: >
   NER-CTI involves the automatic identification and classification of specific named entities in cyber threat intelligence data, such as 
   indicators of compromise, malware names, IP addresses, domain names, and other cyber threat-related entities, often represented using 
   the [Structured Threat Information Expression (STIX)](#stix) format.
+  
   The goal of NER-CTI is to extract actionable insights from large volumes of unstructured threat intelligence data to improve cybersecurity 
   defenses and response. NER-CTI techniques typically involve the use of machine learning algorithms, including deep 
   neural networks, to analyze and classify threat intelligence data. NER-CTI is an emerging area of research and has the potential to significantly enhance the
@@ -120,15 +146,22 @@ description: >
   
   ### :paperclip: STIX
 
-  As we do not deal with custom domain of named entity recognition, the the labels at hand differ from the standard entities like "GPE, ORG, LOC, PERCENT a.s.o.".
-  The standard label-set for NER-CIT follows the definitions of [STIX](https://oasis-open.github.io/cti-documentation/stix/intro).
+  Because NER-CTI is a downstream task of NER, the associated labels differ from the standard entities like "GPE, ORG, LOC, PERCENT a.s.o." in total.
+  The custom label set for NER-CIT follows the definitions of [STIX](https://oasis-open.github.io/cti-documentation/stix/intro) and therefore requires a given 
+  NLP tool to adapt to this specialized domain.
   
-  Having a closer look at STIX might also be interesting to find other CTI-datasets also including relationships.
-  Additionally, STIX adds an interesting turn in working with CTI-data by introducing not only "Entities" and "Relations" but also "Sightings" defined as: 
+  
+  Beside the technical requirements, having a closer look at STIX might also be interesting to find other CTI-datasets also including relationships.
+  Additionally, STIX adds an interesting turn in working with CTI-data by introducing not only entities and relations but also sightings defined as: 
   "belief that something in CTI (e.g., an indicator, malware, tool, threat actor, etc.) was seen". 
   This is especially fascinating, because a relation like "Kaspersky Lab detected Trojan.Win32.Agent" can be seen as the facts of having a CTI already broke the
-  system. In contrast, a "sighting" is information streamed in real-time data not proven to be true or false, thus making the task of detecting cyberattacks 
-  especially difficult.
+  system.
+  
+  
+  In contrast, a sighting is information streamed in real-time data not proven to be true or false, thus making the task of detecting cyberattacks 
+  especially difficult since the ground truth for a given NLP tool is not based on truth, but speculation. Consequently, analysts should also be aware that a
+  NER-CTI system is trained on cases where cyber threats are truly detected and thus rely on a factual data. Hence, the ability to generalize of such system might be a critical aspect before 
+  and while deployment. 
   
   ## :floppy_disk: CyNER
   
@@ -138,7 +171,7 @@ description: >
   The dataset was created to address the lack of cybersecurity-specific NER datasets and to facilitate the development of more accurate and effective NER models
   for cybersecurity applications.
   In addition, the paper provides detailed statistics about the dataset, an analysis of its characteristics, and a baseline performance of 76.66% macro-F1 
-  achieved with XML-RoBERTa-large.
+  achieved with [XML-RoBERTa-large](https://huggingface.co/xlm-roberta-large).
   
     **Token Distribution:**
   
@@ -184,18 +217,34 @@ description: >
       0b8806b38b52bebfe39ff585639e2ea2 and is detected
       B-Indicator                      O   O  O
 
-      by Kaspersky      Lab products   as " Backdoor.AndroidOS.Chuli.a " .
-      O  B-Organization I-Organization O  O B-Indicator                O O
+      by Kaspersky      Lab            products   as 
+      O  B-Organization I-Organization O          O  
+
+      " Backdoor.AndroidOS.Chuli.a " .
+      O B-Indicator                O O
 
   This example shows significant differences in expression of a labels meaning. 
-  Here, files like "0b8806b38b52bebfe39ff585639e2ea2" or "Backdoor.AndroidOS.Chuli.a" (Indicator) are detected by "Kaspersky Lab" (Organization). 
+  Here, files like 0b8806b38b52bebfe39ff585639e2ea2 or Backdoor.AndroidOS.Chuli.a (Indicator) are detected by Kaspersky Lab (Organization). 
   As this data do no cover relations between entities, the relation "detected by" is not of further interest.
   
   # :bookmark_tabs: spaCy's text processing pipeline:
+  
+  When it comes to NLP, there are many libraries and tools to choose from. However, one library that stands out from the rest is [spaCy](https://spacy.io).
+  
 
-  The SpaCy pipeline is a sequence of NLP components that are applied to a text document in order to extract meaning and structure from the text, including a 
-  [tokenizer](https://spacy.io/api/tokenizer), a [part-of-speech tagger (POS)](https://spacy.io/api/tagger), a [dependency parser](https://spacy.io/api/dependencyparser),
-  [NER](https://spacy.io/api/entityrecognizer), and all follow-up tasks like [text categorization](https://spacy.io/api/textcategorizer).
+  But what makes SpaCy so special? For starters, it's built [with efficiency in mind](https://spacy.io/usage), allowing it to handle large volumes of text data with ease.
+  Its advanced machine learning algorithms and statistical models also enable it to produce highly accurate results, making it a reliable choice for even the most complex NLP tasks.
+
+
+  And if that's not enough, spaCy's [flexibility and extensibility](https://spacy.io/usage/layers-architectures) allow it to be tailored to specific needs,
+  making it a truly customizable solution.
+
+  Finally, by choosing SpaCy, offers the opportunity to introduce a new and innovative tool to [NLP workflows](https://spacy.io/usage/projects#intro). 
+  Plus, since it's not yet used by Cdo CIR, it can be at the forefront of adopting cutting-edge technology in such fast-living organizations.
+
+  The [spaCy pipeline](https://spacy.io/usage/processing-pipelines) is a sequence of NLP components that are applied to a text document in order to 
+  extract meaning and structure from the text, including a [tokenizer](https://spacy.io/api/tokenizer), a [part-of-speech tagger (POS)](https://spacy.io/api/tagger),
+  a [dependency parser](https://spacy.io/api/dependencyparser), [NER](https://spacy.io/api/entityrecognizer), and all follow-up tasks like [text categorization](https://spacy.io/api/textcategorizer).
   
   <figure>
     <img src="https://spacy.io/images/pipeline.svg" alt="Spacy pipeline diagram">
@@ -205,14 +254,18 @@ description: >
   
   At its core is the [nlp object](https://spacy.io/usage/processing-pipelines), which represents the pipeline itself.
   
-  The pipeline starts by tokenizing the text, or breaking it up into individual words or sub-word units. Then, the POS tagger assigns a part-of-speech tag to 
-  each token, such as "noun", "verb", "adjective", etc. Next, the dependency parser analyzes the relationships between the tokens in the sentence, identifying 
-  the grammatical structure and dependencies between words.
-  Consequently, the NER component then identifies and extracts named entities, such as people, organizations, and locations, from the text. 
-  This capability in turn can be used to extract structured data from unstructured text, such as building a [knowledge graph or database](https://www.ibm.com/topics/knowledge-graph).
+  The pipeline starts by [tokenizing the text](https://spacy.io/usage/linguistic-features#tokenization), or breaking it up into individual words or sub-word units.
+  Then, the [POS tagger](https://spacy.io/usage/linguistic-features#pos-tagging) assigns a part-of-speech tag to each token, such as noun, verb, adjective, etc. 
+  Next, the [dependency parser](https://spacy.io/usage/linguistic-features#dependency-parse) analyzes the relationships between the tokens in the sentence,
+  identifying the grammatical structure and dependencies between words.
+  Consequently, the [NER component](https://spacy.io/usage/linguistic-features#named-entities-101) then identifies and extracts named entities, such as people, 
+  organizations, and locations, from the text.  
+  
+  This capability in turn can be used to extract structured data from unstructured text, such as building a [knowledge graph or database](https://www.ibm.com/topics/knowledge-graph)
+  or even perform [entity linking](https://spacy.io/usage/linguistic-features#entity-linking), indicating relationships between like "Kairo located_in Egypt".
 
 
-  Also it's worth noting that the components of the spaCy pipeline is designed to be flexible and modular, so developers can choose to use all or some of them, or 
+  Also it's worth noting that the components of the spaCy pipeline are designed to be flexible and modular, so developers can choose to use all or some of them, or 
   even add [custom components](https://spacy.io/usage/training#custom-functions) as needed.
   
   
@@ -222,13 +275,14 @@ description: >
   [part-of-speech tag](https://medium.com/mlearning-ai/nlp-04-part-of-speech-tagging-in-spacy-dc3e239c2726), and named entity labels.
   The nlp object also provides a range of convenient methods and attributes for working with processed documents,
   such as accessing specific tokens or entities, [visualizing the document structure](https://spacy.io/universe/project/displacy),
-  or performing similarity calculations between documents.
+  or performing [similarity calculations between documents](https://spacy.io/usage/linguistic-features#vectors-similarity).
 
   ## :telescope: Turning text into features
 
-  spacy's pipeline components, such as the part-of-speech tagger, dependency parser, and named entity recognizer, can listen to the text representation 
-  components tok2vec or transformers to extract useful features for their respective tasks. These features are learned through pre-training on large corpora of 
-  text, and can capture important semantic and syntactic relationships between words. By using pre-trained vectors, the text representation component can improve
+  All of spacy's pipeline components, can listen to a text representation components [tok2vec](https://spacy.io/api/tok2vec) or [transformers](https://towardsdatascience.com/transformers-89034557de14)
+  to extract useful features for their respective tasks.
+  These features are learned through pre-training on large corpora of text, and can capture important semantic and syntactic relationships between words.
+  By using [pre-trained vectors](https://www.analyticsvidhya.com/blog/2020/03/pretrained-word-embeddings-nlp/), the text representation component can improve 
   the accuracy and robustness of these downstream components, as they can better capture the nuances of natural language.
 
   <figure>
