@@ -2,7 +2,12 @@ tmp/data/
 .idea
 
 .ipynb_checkpoints/
-models/
+
 corpus/
 assets/
 *.csv
+
+vocab
+model
+moves
+tokenizer

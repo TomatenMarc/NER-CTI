@@ -484,10 +484,10 @@ description: >
 
   # The final model
   
-  The final model can be traced in `./models/`. Please note that the respective binaries are missing and hence the models can not be used for prediction but for 
+  The final model can be traced in `./models/`. Please note that some files are missing due to their size and hence the models can not be used for prediction but for 
   inspection.
   
-  To get the binary or other problems please contact: `marc.feger@icloud.com`.
+  To get the binaries, files or if you have other problems please contact: `marc.feger@icloud.com`.
 
 ##############################################################################################################################################################
 # This section is about the setup of a spaCy project for NER-CTI.                                                                                            #
